@@ -1,4 +1,4 @@
-export type ServicesConfig = Record<ServiceId, ServiceConfig[]>;
+export type ServicesConfig = Record<ServiceId, ServiceProviderConfig[]>;
 
 export type ServiceId = string; //NOSONAR
 
@@ -8,10 +8,10 @@ export type ServiceId = string; //NOSONAR
  *  - Value: directly provide the instance, factory or component
  *  - Bundle: module to be lazy loaded with optional config object
  */
-export type ServiceConfig =
-  | InstanceServiceConfig
-  | FactoryServiceConfig
-  | ComponentServiceConfig;
+export type ServiceProviderConfig =
+  | InstanceServiceProviderConfig
+  | FactoryServiceProviderConfig
+  | ComponentServiceProviderConfig;
 
 export type ServiceConfigBase = {
   ranking?: number;
@@ -31,7 +31,7 @@ export type BundleConfig = Record<string, unknown>;
 
 export type InstanceValueOrBundle = Value | Bundle;
 
-export type InstanceServiceConfig = ServiceConfigBase & {
+export type InstanceServiceProviderConfig = ServiceConfigBase & {
   instance: InstanceValueOrBundle;
 };
 
@@ -52,7 +52,7 @@ export type FactoryValueOrBundle<TBundleConfig = BundleConfig> =
   | { value: FactoryServiceFunction }
   | (Bundle & { config?: TBundleConfig });
 
-export type FactoryServiceConfig = ServiceConfigBase & {
+export type FactoryServiceProviderConfig = ServiceConfigBase & {
   factory: FactoryValueOrBundle;
 };
 
@@ -60,6 +60,6 @@ export type ComponentValueOrBundle<TBundleConfig = BundleConfig> =
   | Value
   | (Bundle & { config?: TBundleConfig });
 
-export type ComponentServiceConfig = ServiceConfigBase & {
+export type ComponentServiceProviderConfig = ServiceConfigBase & {
   component: ComponentValueOrBundle;
 };

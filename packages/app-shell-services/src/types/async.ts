@@ -4,7 +4,7 @@ export type PropertyWithName<K extends string, T> = {
 
 export type ErrorBase = NonNullable<unknown>;
 
-export type UseAsyncBaseResult<
+export type IAsyncBaseResult<
   TData,
   TError extends ErrorBase = Error,
   TDataProp extends string = "data",
@@ -14,42 +14,42 @@ export type UseAsyncBaseResult<
   error: TError | null;
 } & PropertyWithName<TDataProp, TData | TDataPending | undefined>;
 
-export type UseAsyncResult<
+export type IAsyncResult<
   TData,
   TError extends ErrorBase = Error,
   TDataProp extends string = "data",
   TDataPending extends TData | undefined = undefined,
 > =
-  | UseAsyncPendingResult<TData, TError, TDataProp, TDataPending>
-  | UseAsyncErrorResult<TData, TError, TDataProp, TDataPending>
-  | UseAsyncSuccessResult<TData, TError, TDataProp, TDataPending>;
+  | IAsyncPendingResult<TData, TError, TDataProp, TDataPending>
+  | IAsyncErrorResult<TData, TError, TDataProp, TDataPending>
+  | IAsyncSuccessResult<TData, TError, TDataProp, TDataPending>;
 
-export type UseAsyncPendingResult<
+export type IAsyncPendingResult<
   TData,
   TError extends ErrorBase = Error,
   TDataProp extends string = "data",
   TDataPending extends TData | undefined = undefined,
-> = UseAsyncBaseResult<TData, TError, TDataProp> & {
+> = IAsyncBaseResult<TData, TError, TDataProp> & {
   isPending: true;
   error: null;
 } & PropertyWithName<TDataProp, TDataPending>;
 
-export type UseAsyncErrorResult<
+export type IAsyncErrorResult<
   TData,
   TError extends ErrorBase = Error,
   TDataProp extends string = "data",
   TDataPending extends TData | undefined = undefined,
-> = UseAsyncBaseResult<TData, TError, TDataProp, TDataPending> & {
+> = IAsyncBaseResult<TData, TError, TDataProp, TDataPending> & {
   isPending: false;
   error: TError;
 } & PropertyWithName<TDataProp, undefined>;
 
-export type UseAsyncSuccessResult<
+export type IAsyncSuccessResult<
   TData,
   TError extends ErrorBase = Error,
   TDataProp extends string = "data",
   TDataPending extends TData | undefined = undefined,
-> = UseAsyncBaseResult<TData, TError, TDataProp, TDataPending> & {
+> = IAsyncBaseResult<TData, TError, TDataProp, TDataPending> & {
   isPending: false;
   error: null;
 } & PropertyWithName<TDataProp, TData>;

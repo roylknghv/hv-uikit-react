@@ -1,43 +1,56 @@
-import { ReactNode } from "react";
+import { ComponentType, PropsWithChildren } from "react";
 import { render, waitFor } from "@testing-library/react";
+import * as appShellShared from "@hitachivantara/app-shell-shared";
 
 import CombinedProviders from "./CombinedProviders";
 
-describe("CombinedProviders", () => {
-  it("combines all passed providers, from first to last, wrapping the passed children and config if any", async () => {
-    const DummyActionComponent1 = ({ children }: { children: ReactNode }) => (
-      <div aria-label="dummyProviderComponent1">{children}</div>
-    );
-    const DummyActionComponent2 = ({ children }: { children: ReactNode }) => (
-      <div aria-label="dummyProviderComponent2">{children}</div>
-    );
-    const DummyActionComponent3 = ({ children }: { children: ReactNode }) => (
-      <div aria-label="dummyProviderComponent3">{children}</div>
-    );
-    const DummyProviderWithConfig = ({
-      children,
-      testProp,
-    }: {
-      children: ReactNode;
-      testProp?: string;
-    }) => (
-      <div aria-label="dummyProviderWithConfig" data-test-prop={testProp}>
-        {children}
-      </div>
-    );
+const DummyActionComponent1: ComponentType<PropsWithChildren> = ({
+  children,
+}) => <div aria-label="dummyProviderComponent1">{children}</div>;
+const DummyActionComponent2: ComponentType<PropsWithChildren> = ({
+  children,
+}) => <div aria-label="dummyProviderComponent2">{children}</div>;
+const DummyActionComponent3: ComponentType<PropsWithChildren> = ({
+  children,
+}) => <div aria-label="dummyProviderComponent3">{children}</div>;
 
+interface DummyProviderWithConfigProps extends PropsWithChildren {
+  testProp?: string;
+}
+
+const DummyProviderWithConfig: ComponentType<DummyProviderWithConfigProps> = ({
+  children,
+  testProp,
+}) => (
+  <div aria-label="dummyProviderWithConfig" data-test-prop={testProp}>
+    {children}
+  </div>
+);
+
+const useHvAppShellCombinedProvidersSpy = vi.spyOn(
+  appShellShared,
+  "useHvAppShellCombinedProviders",
+);
+
+describe("CombinedProviders", () => {
+  beforeEach(() =>
+    useHvAppShellCombinedProvidersSpy.mockReturnValue({
+      providers: [
+        { key: "1", component: DummyActionComponent1 },
+        {
+          key: "2",
+          component: DummyProviderWithConfig,
+          config: { testProp: "test-value" },
+        },
+        { key: "3", component: DummyActionComponent2 },
+        { key: "4", component: DummyActionComponent3 },
+      ],
+    }),
+  );
+
+  it("combines all passed providers, from first to last, wrapping the passed children and config if any", async () => {
     const { getByLabelText } = render(
-      <CombinedProviders
-        providers={[
-          { component: DummyActionComponent1 },
-          {
-            component: DummyProviderWithConfig,
-            config: { testProp: "test-value" },
-          },
-          { component: DummyActionComponent2 },
-          { component: DummyActionComponent3 },
-        ]}
-      >
+      <CombinedProviders>
         <div aria-label="dummy" />
       </CombinedProviders>,
     );

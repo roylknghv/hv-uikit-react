@@ -1,34 +1,27 @@
-import { ComponentType, ReactElement, ReactNode, useCallback } from "react";
+import { useMemo, type PropsWithChildren } from "react";
+import { useHvAppShellCombinedProviders } from "@hitachivantara/app-shell-shared";
 
-type CombinedProvidersProps = {
-  providers:
-    | Array<{
-        component: ComponentType<{ children: ReactNode }>;
-        config?: Record<string, unknown>;
-      }>
-    | undefined;
-  children: ReactNode;
-};
+interface CombinedProvidersProps extends PropsWithChildren {}
 
 const CombinedProviders = ({
-  providers,
   children: mainChildren,
 }: CombinedProvidersProps) => {
-  const Combined = useCallback(
-    ({ children }: { children: ReactNode }) => {
-      let result = children;
+  const { providers } = useHvAppShellCombinedProviders();
 
-      if (providers && providers.length > 0) {
-        result = providers.reduceRight((Acc, { component: Curr, config }) => {
-          return <Curr {...config}>{Acc}</Curr>;
-        }, children);
-      }
-
-      return result as ReactElement;
-    },
-    [providers],
+  const combined = useMemo(
+    () =>
+      providers?.reduceRight(
+        (Acc, { component: Curr, config, key }) => (
+          <Curr key={key} {...config}>
+            {Acc}
+          </Curr>
+        ),
+        mainChildren,
+      ),
+    [providers, mainChildren],
   );
-  return <Combined>{mainChildren}</Combined>;
+
+  return <>{combined}</>;
 };
 
 export default CombinedProviders;

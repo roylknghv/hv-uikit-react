@@ -2,7 +2,7 @@ import { act, render, waitFor } from "@testing-library/react";
 import { vi } from "vitest";
 import {
   CONFIG_TRANSLATIONS_NAMESPACE,
-  useHvAppShellConfig,
+  useHvAppShellModel,
 } from "@hitachivantara/app-shell-shared";
 import { themes } from "@hitachivantara/uikit-react-core";
 
@@ -19,7 +19,7 @@ describe("AppShellProvider component", () => {
   });
   describe("rendering", () => {
     const DummyComponent = () => {
-      const test = useHvAppShellConfig();
+      const test = useHvAppShellModel();
       return <p>{test?.name}</p>;
     };
     const mockedConfigResponse = {
