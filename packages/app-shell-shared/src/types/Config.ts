@@ -62,10 +62,17 @@ export interface HvAppShellMainPanelConfig extends ViewHvContainerProps {
   views?: HvAppShellTopViewConfig[];
 }
 
-export interface HvAppShellProvidersConfig extends HvAppShellConditionalConfig {
+export interface HvAppShellProvidersBaseConfig {
   bundle: string;
   config?: Record<string, unknown>;
 }
+
+export interface HvAppShellConditionsProvidersConfig
+  extends HvAppShellProvidersBaseConfig {}
+
+export interface HvAppShellProvidersConfig
+  extends HvAppShellProvidersBaseConfig,
+    HvAppShellConditionalConfig {}
 
 export interface HvAppShellConfig {
   baseUrl?: string;
@@ -78,6 +85,7 @@ export interface HvAppShellConfig {
   mainPanel?: HvAppShellMainPanelConfig;
   theming?: HvAppShellThemingConfig;
   header?: HvAppShellHeader;
+  conditionsProviders?: HvAppShellConditionsProvidersConfig[];
   providers?: HvAppShellProvidersConfig[];
   services?: HvAppShellServicesConfig;
 }

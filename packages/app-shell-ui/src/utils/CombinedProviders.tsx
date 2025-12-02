@@ -1,13 +1,14 @@
-import { useMemo, type PropsWithChildren } from "react";
-import { useHvAppShellCombinedProviders } from "@hitachivantara/app-shell-shared";
+import { useMemo } from "react";
+import { HvAppShellProvidersComponent } from "@hitachivantara/app-shell-shared";
 
-interface CombinedProvidersProps extends PropsWithChildren {}
+interface CombinedProvidersProps extends React.PropsWithChildren {
+  providers?: HvAppShellProvidersComponent[];
+}
 
 const CombinedProviders = ({
   children: mainChildren,
+  providers,
 }: CombinedProvidersProps) => {
-  const { providers } = useHvAppShellCombinedProviders();
-
   const combined = useMemo(() => {
     if (!providers || providers.length === 0) {
       return mainChildren;

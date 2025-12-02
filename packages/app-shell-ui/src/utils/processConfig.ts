@@ -196,6 +196,15 @@ export default function processConfig(
     };
   }
 
+  if (appShellConfig.conditionsProviders) {
+    config.conditionsProviders = appShellConfig.conditionsProviders.map(
+      (provider) => ({
+        ...provider,
+        key: generateKey(),
+      }),
+    );
+  }
+
   if (appShellConfig.providers) {
     config.providers = appShellConfig.providers.map((provider) =>
       registerElement<typeof provider, HvAppShellProvidersModel>(provider),

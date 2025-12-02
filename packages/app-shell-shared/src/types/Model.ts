@@ -5,6 +5,7 @@ import type {
 
 import {
   HvAppShellConditionConfig,
+  HvAppShellConditionsProvidersConfig,
   HvAppShellConfig,
   HvAppShellHeader,
   HvAppShellHeaderAction,
@@ -50,6 +51,11 @@ export type HvAppShellHeaderActionModel = Omit<
 > &
   HvAppShellConditionalModel;
 
+export type HvAppShellConditionsProvidersModel =
+  HvAppShellConditionsProvidersConfig & {
+    key: string;
+  };
+
 export type HvAppShellProvidersModel = Omit<
   HvAppShellProvidersConfig,
   "conditions"
@@ -77,11 +83,17 @@ export type HvAppShellHeaderModel = Omit<HvAppShellHeader, "actions"> & {
 
 export type HvAppShellModel = Omit<
   HvAppShellConfig,
-  "menu" | "mainPanel" | "header" | "providers" | "services"
+  | "menu"
+  | "mainPanel"
+  | "header"
+  | "conditionsProviders"
+  | "providers"
+  | "services"
 > & {
   menu?: HvAppShellMenuModel[];
   mainPanel?: HvAppShellMainPanelModel;
   header?: HvAppShellHeaderModel;
+  conditionsProviders?: HvAppShellConditionsProvidersModel[];
   providers?: HvAppShellProvidersModel[];
   services?: HvAppShellServicesModel;
   /** All conditions present in the model, indexed by globalIndex */

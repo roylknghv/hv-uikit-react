@@ -2,7 +2,10 @@ import { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { Outlet } from "react-router-dom";
 import ServiceManagerProvider from "@hitachivantara/app-shell-services";
-import { useHvAppShellModel } from "@hitachivantara/app-shell-shared";
+import {
+  useHvAppShellCombinedProviders,
+  useHvAppShellModel,
+} from "@hitachivantara/app-shell-shared";
 
 import CustomHooksInitializer from "../../components/CustomHooksInitializer";
 import Header from "../../components/layout/Header";
@@ -15,11 +18,12 @@ import LoadingPage from "../LoadingPage";
 
 const Root = () => {
   const { services } = useHvAppShellModel();
+  const { providers } = useHvAppShellCombinedProviders();
 
   return (
     <ErrorBoundary fallback={<GenericError fullPage />}>
       <ServiceManagerProvider config={{ services }}>
-        <CombinedProviders>
+        <CombinedProviders providers={providers}>
           <NavigationProvider>
             <BannerProvider>
               <CustomHooksInitializer />

@@ -1,11 +1,4 @@
-import {
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-  type ComponentType,
-  type PropsWithChildren,
-} from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import { I18nContext } from "react-i18next";
 import {
   CONFIG_TRANSLATIONS_NAMESPACE,
@@ -26,13 +19,9 @@ import { useFilteredModel } from "../../hooks/useFilteredModel";
 import useLocalStorage from "../../hooks/useLocalStorage";
 import { useModelFromConfig } from "../../hooks/useModelFromConfig";
 import { addResourceBundles } from "../../i18n";
+import CombinedProviders from "../../utils/CombinedProviders";
 
-interface AppShellProviderProps extends PropsWithChildren {
-  config?: Partial<HvAppShellConfig>;
-  configUrl?: string;
-}
-
-interface AppShellProviderInnerProps extends PropsWithChildren {
+interface AppShellProviderInnerProps extends React.PropsWithChildren {
   config: HvAppShellConfig;
   model: HvAppShellModel;
 }
@@ -88,7 +77,7 @@ const AppShellProviderInner = ({
 
   const providers = useMemo(() => {
     if (!filteredModel?.providers) {
-      return undefined;
+      return;
     }
 
     const providersComponents: HvAppShellProvidersComponent[] = [];
@@ -96,7 +85,7 @@ const AppShellProviderInner = ({
     for (const { bundle, key, config } of filteredModel.providers) {
       const component = model.preloadedBundles.get(
         bundle,
-      ) as ComponentType<PropsWithChildren>;
+      ) as React.ComponentType<React.PropsWithChildren>;
 
       providersComponents.push({
         key,
@@ -155,6 +144,11 @@ const AppShellProviderInner = ({
   );
 };
 
+interface AppShellProviderProps extends React.PropsWithChildren {
+  config?: Partial<HvAppShellConfig>;
+  configUrl?: string;
+}
+
 const AppShellProvider = ({
   children,
   config: localConfig,
@@ -201,6 +195,28 @@ const AppShellProvider = ({
   const { model, isPending: areBundlesLoading } =
     useModelFromConfig(initialConfig);
 
+  const conditionProviders = useMemo(() => {
+    if (!model?.conditionsProviders) {
+      return undefined;
+    }
+
+    const providersComponents: HvAppShellProvidersComponent[] = [];
+
+    for (const provider of model.conditionsProviders) {
+      const component = model.preloadedBundles.get(
+        provider.bundle,
+      ) as React.ComponentType<React.PropsWithChildren>;
+
+      providersComponents.push({
+        key: provider.key,
+        component,
+        config: provider.config,
+      });
+    }
+
+    return providersComponents;
+  }, [model?.conditionsProviders, model?.preloadedBundles]);
+
   if (hasError) {
     throw new Error("It was not possible to obtain the configuration");
   }
@@ -211,9 +227,11 @@ const AppShellProvider = ({
   }
 
   return (
-    <AppShellProviderInner config={rawConfig} model={model}>
-      {children}
-    </AppShellProviderInner>
+    <CombinedProviders providers={conditionProviders}>
+      <AppShellProviderInner config={rawConfig} model={model}>
+        {children}
+      </AppShellProviderInner>
+    </CombinedProviders>
   );
 };
 

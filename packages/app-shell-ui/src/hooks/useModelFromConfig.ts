@@ -38,6 +38,11 @@ export const useModelFromConfig = (
     [config],
   );
 
+  const conditionsProvidersBundles = useMemo(
+    () => (initialModel?.conditionsProviders ?? []).map((p) => p.bundle),
+    [initialModel],
+  );
+
   const conditionBundles = useMemo(
     () => (initialModel?.allConditions ?? []).map((c) => c.bundle),
     [initialModel],
@@ -49,8 +54,12 @@ export const useModelFromConfig = (
   );
 
   const bundles = useMemo(
-    () => [...conditionBundles, ...providerBundles],
-    [conditionBundles, providerBundles],
+    () => [
+      ...conditionsProvidersBundles,
+      ...conditionBundles,
+      ...providerBundles,
+    ],
+    [conditionsProvidersBundles, conditionBundles, providerBundles],
   );
 
   const promiseFactory = useCallback(async () => {

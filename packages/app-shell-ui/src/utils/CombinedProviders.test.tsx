@@ -1,6 +1,5 @@
 import { ComponentType, PropsWithChildren } from "react";
 import { render, waitFor } from "@testing-library/react";
-import * as appShellShared from "@hitachivantara/app-shell-shared";
 
 import CombinedProviders from "./CombinedProviders";
 
@@ -27,30 +26,21 @@ const DummyProviderWithConfig: ComponentType<DummyProviderWithConfigProps> = ({
   </div>
 );
 
-const useHvAppShellCombinedProvidersSpy = vi.spyOn(
-  appShellShared,
-  "useHvAppShellCombinedProviders",
-);
+const mockProviders = [
+  { key: "1", component: DummyActionComponent1 },
+  {
+    key: "2",
+    component: DummyProviderWithConfig,
+    config: { testProp: "test-value" },
+  },
+  { key: "3", component: DummyActionComponent2 },
+  { key: "4", component: DummyActionComponent3 },
+];
 
 describe("CombinedProviders", () => {
-  beforeEach(() =>
-    useHvAppShellCombinedProvidersSpy.mockReturnValue({
-      providers: [
-        { key: "1", component: DummyActionComponent1 },
-        {
-          key: "2",
-          component: DummyProviderWithConfig,
-          config: { testProp: "test-value" },
-        },
-        { key: "3", component: DummyActionComponent2 },
-        { key: "4", component: DummyActionComponent3 },
-      ],
-    }),
-  );
-
   it("combines all passed providers, from first to last, wrapping the passed children and config if any", async () => {
     const { getByLabelText } = render(
-      <CombinedProviders>
+      <CombinedProviders providers={mockProviders}>
         <div aria-label="dummy" />
       </CombinedProviders>,
     );
@@ -84,12 +74,8 @@ describe("CombinedProviders", () => {
   });
 
   it("should render children without any providers when providers array is empty", () => {
-    useHvAppShellCombinedProvidersSpy.mockReturnValue({
-      providers: [],
-    });
-
     const { getByLabelText, queryByLabelText } = render(
-      <CombinedProviders>
+      <CombinedProviders providers={[]}>
         <div aria-label="dummy-child" />
       </CombinedProviders>,
     );
@@ -102,12 +88,8 @@ describe("CombinedProviders", () => {
   });
 
   it("should render children without any providers when providers is undefined", () => {
-    useHvAppShellCombinedProvidersSpy.mockReturnValue({
-      providers: undefined,
-    });
-
     const { getByLabelText, queryByLabelText } = render(
-      <CombinedProviders>
+      <CombinedProviders providers={undefined}>
         <div aria-label="dummy-child-2" />
       </CombinedProviders>,
     );
