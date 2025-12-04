@@ -4,6 +4,7 @@ import {
   CONFIG_TRANSLATIONS_NAMESPACE,
   HvAppShellCombinedProvidersContext,
   HvAppShellContext,
+  HvAppShellModelContext,
   HvAppShellProvidersComponent,
   HvAppShellRuntimeContext,
   type HvAppShellConfig,
@@ -111,12 +112,11 @@ const AppShellProviderInner = ({
     [providers],
   );
 
-  const appShellContextValue = useMemo(
-    () => ({
-      config,
-      model: filteredModel!,
-    }),
-    [config, filteredModel],
+  const appShellConfigContextValue = useMemo(() => config, [config]);
+
+  const appShellModelContextValue = useMemo(
+    () => filteredModel,
+    [filteredModel],
   );
 
   if (
@@ -128,18 +128,22 @@ const AppShellProviderInner = ({
   }
 
   return (
-    <HvAppShellContext.Provider value={appShellContextValue}>
-      <HvAppShellRuntimeContext.Provider value={runtimeContext}>
-        <HvProvider
-          themes={themes}
-          theme={filteredModel.theming?.theme}
-          colorMode={storedColorModeValue ?? filteredModel.theming?.colorMode}
-        >
-          <HvAppShellCombinedProvidersContext.Provider value={providersContext}>
-            {children}
-          </HvAppShellCombinedProvidersContext.Provider>
-        </HvProvider>
-      </HvAppShellRuntimeContext.Provider>
+    <HvAppShellContext.Provider value={appShellConfigContextValue}>
+      <HvAppShellModelContext.Provider value={appShellModelContextValue}>
+        <HvAppShellRuntimeContext.Provider value={runtimeContext}>
+          <HvProvider
+            themes={themes}
+            theme={filteredModel.theming?.theme}
+            colorMode={storedColorModeValue ?? filteredModel.theming?.colorMode}
+          >
+            <HvAppShellCombinedProvidersContext.Provider
+              value={providersContext}
+            >
+              {children}
+            </HvAppShellCombinedProvidersContext.Provider>
+          </HvProvider>
+        </HvAppShellRuntimeContext.Provider>
+      </HvAppShellModelContext.Provider>
     </HvAppShellContext.Provider>
   );
 };

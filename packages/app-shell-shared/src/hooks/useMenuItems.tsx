@@ -1,7 +1,7 @@
 import { useContext, useEffect, useMemo, useState } from "react";
 import { useLocation } from "react-router-dom";
 
-import { useHvAppShellModel } from "../AppShellContext";
+import { useHvAppShellModel } from "../AppShellModelContext";
 import { HvAppShellRuntimeContext } from "../AppShellRuntimeContext";
 import { CONFIG_TRANSLATIONS_NAMESPACE } from "../i18n";
 import type { MenuItemsContext } from "../types/menu";

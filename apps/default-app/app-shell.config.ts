@@ -234,6 +234,13 @@ export default {
       {
         bundle: "@self/services/headerActions/CreateNewContentDropDownMenu.js",
       },
+      {
+        bundle: "@hv/user-notifications-client/index.js",
+        config: {
+          showCount: false,
+        },
+      },
+      { bundle: "@hv/user-information-client/index.js" },
       { bundle: "@hv/theming-client/colorModeSwitcher.js" },
       {
         bundle: "@hv/app-switcher-client/toggle.js",
@@ -269,7 +276,9 @@ export default {
           description: "Hitachi Vantara Help Link",
         },
       },
+      { bundle: "@hv/sample-app/headerActions/HelloSimpleApp.js" },
       { bundle: "@self/modules/ChangeContextValue.js" },
+      { bundle: "@hv/sample-app/headerActions/ChangeDefaultAppContext.js" },
     ],
   },
 
