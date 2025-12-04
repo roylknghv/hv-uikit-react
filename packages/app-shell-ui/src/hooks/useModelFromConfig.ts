@@ -1,15 +1,15 @@
 import { useCallback, useMemo } from "react";
 import {
   useAsync,
+  type AsyncResult,
   type HvAppShellConfig,
   type HvAppShellModel,
-  type IAsyncResult,
 } from "@hitachivantara/app-shell-shared";
 
 import { importAllBundles } from "../utils/lazyImport";
 import processConfig from "../utils/processConfig";
 
-export type IModelResult = IAsyncResult<
+export type ModelResult = AsyncResult<
   HvAppShellModel | undefined,
   Error,
   "model"
@@ -27,12 +27,12 @@ export type IModelResult = IAsyncResult<
  *   global indices to condition definitions) to produce a base `HvAppShellModel`.
  * - Extracts bundle paths from all conditions and providers, concatenates them
  *   and preloads those bundles using `importAllBundles`.
- * - Returns an IAsyncResult-shaped value so callers can read `isPending`,
+ * - Returns an AsyncResult-shaped value so callers can read `isPending`,
  *   `error` and the `model` property (the data property is named `model`).
  */
 export const useModelFromConfig = (
   config: HvAppShellConfig | undefined,
-): IModelResult => {
+): ModelResult => {
   const initialModel = useMemo(
     () => (config ? processConfig(config) : undefined),
     [config],

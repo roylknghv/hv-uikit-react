@@ -1,6 +1,6 @@
-import { IAsyncResult } from "@hitachivantara/app-shell-services";
+import { AsyncResult } from "@hitachivantara/app-shell-services";
 
-export type UseConditionResult = IAsyncResult<boolean, Error, "result">;
+export type UseConditionResult = AsyncResult<boolean, Error, "result">;
 
 export type UseCondition = (
   config?: Record<string, unknown>,

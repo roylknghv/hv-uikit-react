@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import type {
+  AsyncResult,
   HvAppShellConditionModel,
-  IAsyncResult,
   PreloadedBundles,
   UseCondition,
   UseConditionResult,
@@ -29,7 +29,7 @@ function areArraysEqual<T>(a: T[], b: T[]): boolean {
 
 export type ConditionResultsList = boolean[];
 
-export type ConditionsEvaluatorResult = IAsyncResult<
+export type ConditionsEvaluatorResult = AsyncResult<
   ConditionResultsList,
   Error,
   "result"

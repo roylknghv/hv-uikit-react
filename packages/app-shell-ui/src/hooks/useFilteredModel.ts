@@ -3,7 +3,7 @@ import type { HvAppShellModel } from "@hitachivantara/app-shell-shared";
 
 import filterModel from "../utils/filterModel";
 import { useConditionsEvaluator } from "./useConditionsEvaluator";
-import { IModelResult } from "./useModelFromConfig";
+import { ModelResult } from "./useModelFromConfig";
 
 /**
  * Hook to evaluate conditions and filter configuration
@@ -11,7 +11,7 @@ import { IModelResult } from "./useModelFromConfig";
  * @param model - The app shell model with config and preloaded bundles
  * @returns Object with isPending flag and the filtered model
  */
-export const useFilteredModel = (model: HvAppShellModel): IModelResult => {
+export const useFilteredModel = (model: HvAppShellModel): ModelResult => {
   const { isPending: isModelPending, result } = useConditionsEvaluator(
     model.allConditions,
     model.preloadedBundles,

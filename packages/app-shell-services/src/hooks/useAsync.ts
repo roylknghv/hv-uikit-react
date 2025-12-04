@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 
 import {
+  AsyncErrorResult,
+  AsyncPendingResult,
+  AsyncResult,
+  AsyncSuccessResult,
   ErrorBase,
-  IAsyncErrorResult,
-  IAsyncPendingResult,
-  IAsyncResult,
-  IAsyncSuccessResult,
 } from "../types/async";
 
-type IAsyncOptions<
+type AsyncOptions<
   TData,
   TDataProp extends string,
   TPending extends TData | undefined,
@@ -25,14 +25,14 @@ type IAsyncOptions<
  *  - Track pending state, resolved data and typed error.
  *  - Prevent state updates after unmount to avoid memory leaks (see {@link https://reactjs.org/docs/hooks-effect.html | React's useEffect}).
  *
- * Returns a {@link IAsyncResult} which is a discriminated union:
- *  - {@link IAsyncPendingResult} — pending: `isPending: true`, `error: null`, and the pending data property.
- *  - {@link IAsyncSuccessResult} — success: `isPending: false`, `error: null`, and the resolved data property.
- *  - {@link IAsyncErrorResult} — error: `isPending: false`, `error: TError`, and the data property set to `undefined`.
+ * Returns a {@link AsyncResult} which is a discriminated union:
+ *  - {@link AsyncPendingResult} — pending: `isPending: true`, `error: null`, and the pending data property.
+ *  - {@link AsyncSuccessResult} — success: `isPending: false`, `error: null`, and the resolved data property.
+ *  - {@link AsyncErrorResult} — error: `isPending: false`, `error: TError`, and the data property set to `undefined`.
  *
  * Type references:
  *  - Error type: {@link ErrorBase}
- *  - Result shapes: {@link IAsyncResult}, {@link IAsyncPendingResult}, {@link IAsyncSuccessResult}, {@link IAsyncErrorResult}
+ *  - Result shapes: {@link AsyncResult}, {@link AsyncPendingResult}, {@link AsyncSuccessResult}, {@link AsyncErrorResult}
  *
  * Defaults:
  *  - `dataProp` = `"data"`
@@ -48,8 +48,8 @@ export function useAsync<
   TPending extends TData | undefined = undefined,
 >(
   promiseFactory: () => Promise<TData>,
-  options?: IAsyncOptions<TData, TDataProp, TPending>,
-): IAsyncResult<TData, TError, TDataProp, TPending> {
+  options?: AsyncOptions<TData, TDataProp, TPending>,
+): AsyncResult<TData, TError, TDataProp, TPending> {
   const dataProp = (options?.dataProp ?? "data") as TDataProp;
   const pendingData = options?.pendingData as TPending;
 
@@ -88,7 +88,7 @@ export function useAsync<
       isPending: false,
       error,
       [dataProp]: undefined,
-    } as IAsyncErrorResult<TData, TError, TDataProp, TPending>;
+    } as AsyncErrorResult<TData, TError, TDataProp, TPending>;
   }
 
   if (isPending) {
@@ -96,12 +96,12 @@ export function useAsync<
       isPending: true,
       error: null,
       [dataProp]: pendingData,
-    } as IAsyncPendingResult<TData, TError, TDataProp, TPending>;
+    } as AsyncPendingResult<TData, TError, TDataProp, TPending>;
   }
 
   return {
     isPending: false,
     error: null,
     [dataProp]: data,
-  } as IAsyncSuccessResult<TData, TError, TDataProp, TPending>;
+  } as AsyncSuccessResult<TData, TError, TDataProp, TPending>;
 }

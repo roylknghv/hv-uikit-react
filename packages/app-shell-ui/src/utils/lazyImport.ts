@@ -1,9 +1,9 @@
 import {
-  IAsyncResult,
+  AsyncResult,
   type PreloadedBundles,
 } from "@hitachivantara/app-shell-shared";
 
-export type LazyImportResult = IAsyncResult<unknown, Error, "module">;
+export type LazyImportResult = AsyncResult<unknown, Error, "module">;
 
 export async function lazyImport(bundle: string): Promise<LazyImportResult> {
   try {
