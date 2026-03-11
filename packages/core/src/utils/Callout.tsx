@@ -129,10 +129,21 @@ export interface HvCalloutProps
   /** The props to pass down to the Action Container. */
   actionProps?: Partial<HvButtonProps>;
   /** The size of the banner. */
-  size?: "large" | "regular" | "micro";
+  size?: "large" | "regular" | "toast" | "micro";
   /** A Jss Object used to override or extend the styles applied to the component. */
   classes?: HvCalloutClasses;
 }
+
+const getIconSize = (size: HvCalloutProps["size"]) => {
+  switch (size) {
+    case "large":
+      return "md";
+    case "toast":
+      return "xs";
+    default:
+      return "sm";
+  }
+};
 
 /**
  * `HvCallout` is the internal content handler for the snackbars and banners. Might be promoted to a component.
@@ -200,7 +211,7 @@ export const HvCallout = forwardRef<
         <>
           {icon && (
             <HvStatusIcon
-              size={size === "large" ? "md" : "sm"}
+              size={getIconSize(size)}
               className={classes.messageIcon}
               variant={variant === "default" ? "info" : variant}
               customIcon={customIcon}
