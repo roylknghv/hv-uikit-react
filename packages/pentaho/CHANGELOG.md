@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.0.8](https://github.com/pentaho/hv-uikit-react/compare/@hitachivantara/uikit-react-pentaho@6.0.7...@hitachivantara/uikit-react-pentaho@6.0.8) (2026-03-15)
+
+### Bug Fixes
+
+- **BottomPanel:** tabs overflow perf ([#5108](https://github.com/pentaho/hv-uikit-react/issues/5108)) ([6e61209](https://github.com/pentaho/hv-uikit-react/commit/6e6120949fc8da76888344db3a403538b67266cc))
+- **SidePanel:** drag handle visibility ([#5107](https://github.com/pentaho/hv-uikit-react/issues/5107)) ([7aa79a5](https://github.com/pentaho/hv-uikit-react/commit/7aa79a54fb4f8370232c6d2eb5f2e17ee4db5565))
+
 ## [6.0.7](https://github.com/pentaho/hv-uikit-react/compare/@hitachivantara/uikit-react-pentaho@6.0.6...@hitachivantara/uikit-react-pentaho@6.0.7) (2026-03-06)
 
 **Note:** Version bump only for package @hitachivantara/uikit-react-pentaho

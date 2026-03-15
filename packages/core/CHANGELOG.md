@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.5.0](https://github.com/pentaho/hv-uikit-react/compare/@hitachivantara/uikit-react-core@6.4.3...@hitachivantara/uikit-react-core@6.5.0) (2026-03-15)
+
+### Bug Fixes
+
+- **Breadcrumb:** update default maxVisible ([#5112](https://github.com/pentaho/hv-uikit-react/issues/5112)) ([da7d386](https://github.com/pentaho/hv-uikit-react/commit/da7d3866b3732e98d81ee13c326fbbe2a8af4327))
+
+### Features
+
+- **BreadCrumb:** add home prop ([#5113](https://github.com/pentaho/hv-uikit-react/issues/5113)) ([4d2ad3f](https://github.com/pentaho/hv-uikit-react/commit/4d2ad3f32dcc245921a8657a7a8090fa3bdb9b6f))
+- **BulkActions:** add disabled prop & align styles ([#5104](https://github.com/pentaho/hv-uikit-react/issues/5104)) ([72b07d4](https://github.com/pentaho/hv-uikit-react/commit/72b07d4a7d67f93c5ecaa0d8dbfafe76f5a43bbc))
+- **Snackbar:** update to PD 0.9 specs ([#5054](https://github.com/pentaho/hv-uikit-react/issues/5054)) ([94355ea](https://github.com/pentaho/hv-uikit-react/commit/94355eaac7b3571070f66fe23b13a9f0b6dc8aa1))
+
 ## [6.4.3](https://github.com/pentaho/hv-uikit-react/compare/@hitachivantara/uikit-react-core@6.4.2...@hitachivantara/uikit-react-core@6.4.3) (2026-03-06)
 
 **Note:** Version bump only for package @hitachivantara/uikit-react-core

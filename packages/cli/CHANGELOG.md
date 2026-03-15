@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.0.4](https://github.com/pentaho/hv-uikit-react/compare/@hitachivantara/uikit-cli@6.0.3...@hitachivantara/uikit-cli@6.0.4) (2026-03-15)
+
+### Bug Fixes
+
+- **cli:** bump packages to major & review global types ([#5111](https://github.com/pentaho/hv-uikit-react/issues/5111)) ([72f0d67](https://github.com/pentaho/hv-uikit-react/commit/72f0d67aceadc97fdee55c0d7f0ce0fc41621e6d))
+
 ## [6.0.3](https://github.com/pentaho/hv-uikit-react/compare/@hitachivantara/uikit-cli@6.0.2...@hitachivantara/uikit-cli@6.0.3) (2026-02-27)
 
 **Note:** Version bump only for package @hitachivantara/uikit-cli
