@@ -384,14 +384,8 @@ export const pentaho = mergeTheme(pentahoBase, {
           backgroundColor: theme.colors.bgContainer,
         },
         header: {
-          minHeight: 48,
           padding: theme.spacing("xs", "sm"),
           gap: theme.space.xs,
-        },
-        raisedHeader: {
-          "& .HvSection-header": {
-            boxShadow: "none",
-          },
         },
       },
     } satisfies CSSClasses<HvSectionProps>,
