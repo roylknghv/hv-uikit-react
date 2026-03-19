@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.6.0](https://github.com/pentaho/hv-uikit-react/compare/@hitachivantara/uikit-react-core@6.5.0...@hitachivantara/uikit-react-core@6.6.0) (2026-03-19)
+
+### Bug Fixes
+
+- **config:** bump oxlint version & config new rules ([#5116](https://github.com/pentaho/hv-uikit-react/issues/5116)) ([2ffa7ba](https://github.com/pentaho/hv-uikit-react/commit/2ffa7bafbe87914a55bc3be27eed36a17253c917))
+
+### Features
+
+- **Card:** update to PD 0.10 specs ([#5114](https://github.com/pentaho/hv-uikit-react/issues/5114)) ([057324d](https://github.com/pentaho/hv-uikit-react/commit/057324ded14e97459e78ace46723657d64e0b986))
+- **Section:** update to PD 0.10 specs ([#5089](https://github.com/pentaho/hv-uikit-react/issues/5089)) ([a191c67](https://github.com/pentaho/hv-uikit-react/commit/a191c67f80a46e0dc0b866331d569ed58021f6fe))
+
 # [6.5.0](https://github.com/pentaho/hv-uikit-react/compare/@hitachivantara/uikit-react-core@6.4.3...@hitachivantara/uikit-react-core@6.5.0) (2026-03-15)
 
 ### Bug Fixes

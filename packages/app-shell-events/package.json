@@ -1,6 +1,6 @@
 {
   "name": "@hitachivantara/app-shell-events",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "type": "module",
   "private": false,
   "author": "Hitachi Vantara UI Kit Team",
@@ -24,7 +24,6 @@
     "@hitachivantara/uikit-react-core": "^6.0.0",
     "react": "^18.2.0"
   },
-  "devDependencies": {},
   "files": [
     "dist"
   ],

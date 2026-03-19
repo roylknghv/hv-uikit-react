@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.3](https://github.com/pentaho/hv-uikit-react/compare/@hitachivantara/app-shell-ui@2.2.2...@hitachivantara/app-shell-ui@2.2.3) (2026-03-19)
+
+### Bug Fixes
+
+- **AppShell:** improve logos & error layouts ([#5102](https://github.com/pentaho/hv-uikit-react/issues/5102)) ([7a8e810](https://github.com/pentaho/hv-uikit-react/commit/7a8e8103119ba0f86fa5ea4974419a29c033f680))
+
 ## [2.2.2](https://github.com/pentaho/hv-uikit-react/compare/@hitachivantara/app-shell-ui@2.2.1...@hitachivantara/app-shell-ui@2.2.2) (2026-03-15)
 
 **Note:** Version bump only for package @hitachivantara/app-shell-ui

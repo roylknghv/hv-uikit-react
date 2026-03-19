@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.3](https://github.com/pentaho/hv-uikit-react/compare/@hitachivantara/uikit-uno-preset@1.0.2...@hitachivantara/uikit-uno-preset@1.0.3) (2026-03-19)
+
+### Bug Fixes
+
+- **config:** bump oxlint version & config new rules ([#5116](https://github.com/pentaho/hv-uikit-react/issues/5116)) ([2ffa7ba](https://github.com/pentaho/hv-uikit-react/commit/2ffa7bafbe87914a55bc3be27eed36a17253c917))
+
 ## [1.0.2](https://github.com/pentaho/hv-uikit-react/compare/@hitachivantara/uikit-uno-preset@1.0.1...@hitachivantara/uikit-uno-preset@1.0.2) (2026-01-13)
 
 **Note:** Version bump only for package @hitachivantara/uikit-uno-preset

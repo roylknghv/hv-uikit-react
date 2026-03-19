@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.1](https://github.com/pentaho/hv-uikit-react/compare/@hitachivantara/uikit-config@0.6.0...@hitachivantara/uikit-config@0.6.1) (2026-03-19)
+
+### Bug Fixes
+
+- **config:** bump oxlint version & config new rules ([#5116](https://github.com/pentaho/hv-uikit-react/issues/5116)) ([2ffa7ba](https://github.com/pentaho/hv-uikit-react/commit/2ffa7bafbe87914a55bc3be27eed36a17253c917))
+
 # [0.6.0](https://github.com/pentaho/hv-uikit-react/compare/@hitachivantara/uikit-config@0.5.3...@hitachivantara/uikit-config@0.6.0) (2026-01-23)
 
 ### Features
