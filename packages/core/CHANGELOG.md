@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.7.0](https://github.com/pentaho/hv-uikit-react/compare/@hitachivantara/uikit-react-core@6.6.1...@hitachivantara/uikit-react-core@6.7.0) (2026-04-13)
+
+### Bug Fixes
+
+- **deps:** bump @mui/base version ([#5134](https://github.com/pentaho/hv-uikit-react/issues/5134)) ([9469499](https://github.com/pentaho/hv-uikit-react/commit/946949934cba1c562b42b6aecb639dcc8cd13fe2))
+
+### Features
+
+- **DropdownPanel:** export component ([#5085](https://github.com/pentaho/hv-uikit-react/issues/5085)) ([c9935ab](https://github.com/pentaho/hv-uikit-react/commit/c9935abbb4da685e566302f4e3eb6bc43aae9a62))
+
 ## [6.6.1](https://github.com/pentaho/hv-uikit-react/compare/@hitachivantara/uikit-react-core@6.6.0...@hitachivantara/uikit-react-core@6.6.1) (2026-04-07)
 
 ### Bug Fixes
