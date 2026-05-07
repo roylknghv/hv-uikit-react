@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.8.1](https://github.com/pentaho/hv-uikit-react/compare/@hitachivantara/uikit-react-core@6.8.0...@hitachivantara/uikit-react-core@6.8.1) (2026-05-07)
+
+### Bug Fixes
+
+- **BaseDropdown:** memo onContainerCreation to avoid re-calls ([#5159](https://github.com/pentaho/hv-uikit-react/issues/5159)) ([bac32af](https://github.com/pentaho/hv-uikit-react/commit/bac32afe771a1427060b70961b2133bdd61fc9bb))
+- **TimePicker:** bump react-aria dependency ([#5158](https://github.com/pentaho/hv-uikit-react/issues/5158)) ([aa1937b](https://github.com/pentaho/hv-uikit-react/commit/aa1937b7583806f256917dcd11a53a47534dd7db))
+
 # [6.8.0](https://github.com/pentaho/hv-uikit-react/compare/@hitachivantara/uikit-react-core@6.7.0...@hitachivantara/uikit-react-core@6.8.0) (2026-04-21)
 
 ### Bug Fixes

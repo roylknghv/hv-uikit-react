@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/pentaho/hv-uikit-react/compare/@hitachivantara/app-shell-vite-plugin@2.1.12...@hitachivantara/app-shell-vite-plugin@2.2.0) (2026-05-07)
+
+### Features
+
+- **app-shell:** add i18next package, i18n resource bundles, translations ([56e79a3](https://github.com/pentaho/hv-uikit-react/commit/56e79a3dc0ea73c4648e0d4e88100404287b3bb0))
+
 ## [2.1.12](https://github.com/pentaho/hv-uikit-react/compare/@hitachivantara/app-shell-vite-plugin@2.1.11...@hitachivantara/app-shell-vite-plugin@2.1.12) (2026-04-21)
 
 ### Reverts

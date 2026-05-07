@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0](https://github.com/pentaho/hv-uikit-react/compare/@hitachivantara/app-shell-ui@2.2.7...@hitachivantara/app-shell-ui@2.3.0) (2026-05-07)
+
+### Features
+
+- **app-shell:** add i18next package, i18n resource bundles, translations ([56e79a3](https://github.com/pentaho/hv-uikit-react/commit/56e79a3dc0ea73c4648e0d4e88100404287b3bb0))
+- **AppShell:** add support for unocss phosphor icons ([#5095](https://github.com/pentaho/hv-uikit-react/issues/5095)) ([acbc510](https://github.com/pentaho/hv-uikit-react/commit/acbc5107b6faefcbdd0b61f2ee2ea5b0120aaedd))
+
 ## [2.2.7](https://github.com/pentaho/hv-uikit-react/compare/@hitachivantara/app-shell-ui@2.2.6...@hitachivantara/app-shell-ui@2.2.7) (2026-04-21)
 
 ### Reverts
