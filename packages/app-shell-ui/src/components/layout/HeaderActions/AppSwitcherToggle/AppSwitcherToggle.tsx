@@ -16,9 +16,10 @@ import {
   theme,
   type HvAppSwitcherActionApplication,
 } from "@hitachivantara/uikit-react-core";
+import { AppSwitcher } from "@hitachivantara/uikit-react-icons";
 
 import createAppContainerElement from "../../../../utils/documentUtil";
-import IconUiKit from "../../../IconUiKit";
+import { ConfigIcon } from "../../../ConfigIcon";
 import { BrandLogo } from "../../BrandLogo/BrandLogo";
 import StyledAppShellPanelWrapper from "./styles";
 
@@ -49,7 +50,7 @@ const AppSwitcherToggle: React.FC<HvAppShellAppSwitcherConfig> = ({
         : undefined,
       url: app.url?.includes(":") ? app.url : tConfig(app.url).toString(),
       target: app.target === "NEW" ? "_blank" : "_top",
-      iconElement: app.icon && <IconUiKit name={app.icon.name} />,
+      iconElement: app.icon && <ConfigIcon icon={app.icon} />,
     }));
   }, [apps, tConfig]);
 
@@ -66,7 +67,7 @@ const AppSwitcherToggle: React.FC<HvAppShellAppSwitcherConfig> = ({
           onClick={() => setIsPanelOpen(!isPanelOpen)}
           {...(isPanelOpen && { "aria-controls": appSwitcherPanelId })}
         >
-          <IconUiKit name="AppSwitcher" />
+          <AppSwitcher />
           {showLogo && (
             <BrandLogo logo={logo} style={{ paddingRight: theme.space.xs }} />
           )}
