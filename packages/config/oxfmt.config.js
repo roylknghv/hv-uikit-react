@@ -1,0 +1,38 @@
+/** @type {OxfmtConfig} */
+export default {
+  printWidth: 80,
+  sortPackageJson: false,
+
+  sortImports: {
+    newlinesBetween: false,
+    sortSideEffects: false,
+    groups: [
+      ["type-builtin", "value-builtin"],
+      "react-libs",
+      ["type-external", "value-external"],
+      ["type-import", "value-import"],
+      "hv-libs",
+      { newlinesBetween: true },
+      "alias-libs",
+      ["value-internal", "type-internal"],
+      ["type-parent", "value-parent"],
+      ["type-sibling", "value-sibling"],
+      ["type-index", "value-index"],
+      "unknown",
+    ],
+    customGroups: [
+      {
+        groupName: "react-libs",
+        elementNamePattern: ["react", "react-*", "react-*/**"],
+      },
+      {
+        groupName: "hv-libs",
+        elementNamePattern: ["@hitachivantara/**", "@pentaho/**"],
+      },
+      {
+        groupName: "alias-libs",
+        elementNamePattern: ["~/**", "@/**", "#/**"],
+      },
+    ],
+  },
+};

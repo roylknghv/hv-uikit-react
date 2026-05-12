@@ -30,6 +30,7 @@
     "./prettier": "./prettier.config.json",
     "./licenses": "./licenses/index.js",
     "./oxlint/*.json": "./oxlint/*.json",
+    "./oxfmt": "./oxfmt.config.js",
     "./tsconfig": "./tsconfig.json"
   },
   "publishConfig": {
