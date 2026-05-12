@@ -5,7 +5,7 @@ const {
   VITE_SAMPLE_APP_URL = "https://lumada-design.github.io/modules/sample-app/",
   VITE_USER_INFORMATION_URL = "http://localhost:8081/",
   VITE_USER_NOTIFICATIONS_URL = "http://localhost:8080/",
-} = loadEnv(process.env.NODE_ENV, process.cwd());
+} = loadEnv(process.env.NODE_ENV || "development", process.cwd());
 
 export default {
   baseUrl: "/",

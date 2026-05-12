@@ -3,6 +3,7 @@
   "extends": ["./node_modules/@hitachivantara/uikit-config/oxlint/strict.json"],
   "options": {
     "typeAware": true
+    // "typeCheck": true
   },
   "rules": {
     "typescript/await-thenable": "off",
