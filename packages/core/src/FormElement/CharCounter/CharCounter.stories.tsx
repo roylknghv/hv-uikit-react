@@ -1,10 +1,10 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
 import {
   HvCharCounter,
-  type HvCharCounterProps,
 } from "@hitachivantara/uikit-react-core";
 
-const meta: Meta<typeof HvCharCounter> = {
+import preview from "../../../../../.storybook/preview";
+
+const meta = preview.meta({
   title: "Components/Form Element Blocks/Char Counter",
   component: HvCharCounter,
   decorators: [
@@ -12,10 +12,9 @@ const meta: Meta<typeof HvCharCounter> = {
       <div style={{ display: "flex", flexDirection: "row" }}>{Story()}</div>
     ),
   ],
-};
-export default meta;
+});
 
-export const Main: StoryObj<HvCharCounterProps> = {
+export const Main = meta.story({
   args: {
     separator: "/",
     maxCharQuantity: 20,
@@ -29,4 +28,4 @@ export const Main: StoryObj<HvCharCounterProps> = {
   render: (args) => {
     return <HvCharCounter {...args}>List</HvCharCounter>;
   },
-};
+});

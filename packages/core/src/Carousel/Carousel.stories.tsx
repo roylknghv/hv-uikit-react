@@ -1,5 +1,4 @@
 import { useState } from "react";
-import type { Meta, StoryObj } from "@storybook/react-vite";
 import {
   HvCard,
   HvCardContent,
@@ -13,14 +12,16 @@ import {
   type HvCarouselProps,
 } from "@hitachivantara/uikit-react-core";
 
-export default {
+import preview from "../../../../.storybook/preview";
+
+const meta = preview.meta({
   title: "Components/Carousel",
   component: HvCarousel,
   // @ts-ignore https://github.com/storybookjs/storybook/issues/23170
   subcomponents: { HvCarouselSlide },
-} satisfies Meta<typeof HvCarousel>;
+});
 
-export const Main: StoryObj<HvCarouselProps> = {
+export const Main = meta.story({
   args: {
     height: 500,
     thumbnailWidth: 120,
@@ -63,9 +64,9 @@ export const Main: StoryObj<HvCarouselProps> = {
       </HvCarousel>
     );
   },
-};
+});
 
-export const Actions: StoryObj<HvCarouselProps> = {
+export const Actions = meta.story({
   parameters: {
     docs: {
       description: {
@@ -111,9 +112,9 @@ export const Actions: StoryObj<HvCarouselProps> = {
       </HvCarousel>
     );
   },
-};
+});
 
-export const Embedded: StoryObj<HvCarouselProps> = {
+export const Embedded = meta.story({
   parameters: {
     docs: {
       description: {
@@ -160,9 +161,9 @@ export const Embedded: StoryObj<HvCarouselProps> = {
       </HvCard>
     );
   },
-};
+});
 
-export const Options: StoryObj<HvCarouselProps> = {
+export const Options = meta.story({
   parameters: {
     docs: {
       description: {
@@ -202,9 +203,9 @@ export const Options: StoryObj<HvCarouselProps> = {
       </HvCarousel>
     );
   },
-};
+});
 
-export const CustomContent: StoryObj<HvCarouselProps> = {
+export const CustomContent = meta.story({
   parameters: {
     docs: {
       description: {
@@ -260,4 +261,4 @@ export const CustomContent: StoryObj<HvCarouselProps> = {
       </HvCarousel>
     );
   },
-};
+});

@@ -1,19 +1,19 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import { useArgs } from "storybook/preview-api";
 import {
   HvContainer,
   HvPanel,
   HvScrollToVertical,
   HvTypography,
-  type HvScrollToVerticalProps,
 } from "@hitachivantara/uikit-react-core";
 
-const meta: Meta<typeof HvScrollToVertical> = {
+import preview from "../../../../.storybook/preview";
+
+const meta = preview.meta({
   title: "Components/ScrollToVertical",
   component: HvScrollToVertical,
-};
-export default meta;
+});
 
-export const Main: StoryObj<HvScrollToVerticalProps> = {
+export const Main = meta.story({
   args: {
     navigationMode: "push",
     position: "absolute",
@@ -24,7 +24,8 @@ export const Main: StoryObj<HvScrollToVerticalProps> = {
     classes: { control: { disable: true } },
     options: { control: { disable: true } },
   },
-  render: (args) => {
+  render: () => {
+    const [args] = useArgs();
     const options = [
       { label: "Server status summary", value: "mainId1" },
       { label: "Optimization", value: "mainId2" },
@@ -58,4 +59,4 @@ export const Main: StoryObj<HvScrollToVerticalProps> = {
       </div>
     );
   },
-};
+});

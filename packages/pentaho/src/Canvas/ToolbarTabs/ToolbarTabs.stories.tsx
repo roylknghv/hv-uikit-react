@@ -1,20 +1,16 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
 import { expect } from "storybook/test";
 import { Leaf } from "@hitachivantara/uikit-react-icons";
-import {
-  HvCanvasToolbarTabs,
-  type HvCanvasToolbarTabsProps,
-} from "@hitachivantara/uikit-react-pentaho";
+import { HvCanvasToolbarTabs } from "@hitachivantara/uikit-react-pentaho";
 
+import preview from "../../../../../.storybook/preview";
 import { ControlledStory } from "./stories/Controlled";
 
-const meta: Meta<typeof HvCanvasToolbarTabs> = {
+const meta = preview.meta({
   title: "Pentaho/Canvas/Toolbar Tabs",
   component: HvCanvasToolbarTabs,
-};
-export default meta;
+});
 
-export const Main: StoryObj<HvCanvasToolbarTabsProps> = {
+export const Main = meta.story({
   args: {
     // Only for testing purposes
     icon: <Leaf data-testid="leaf" />,
@@ -142,9 +138,9 @@ export const Main: StoryObj<HvCanvasToolbarTabsProps> = {
   render: (args) => {
     return <HvCanvasToolbarTabs {...args} />;
   },
-};
+});
 
-export const Controlled: StoryObj<HvCanvasToolbarTabsProps> = {
+export const Controlled = meta.story({
   play: async ({ canvas, userEvent, step }) => {
     await step("renders all components when there are no tabs", async () => {
       const createBtn = canvas.getByRole("button", { name: "Create new" });
@@ -215,9 +211,9 @@ export const Controlled: StoryObj<HvCanvasToolbarTabsProps> = {
     });
   },
   render: () => <ControlledStory />,
-};
+});
 
-export const NotEditable: StoryObj<HvCanvasToolbarTabsProps> = {
+export const NotEditable = meta.story({
   parameters: {
     docs: {
       description: {
@@ -235,9 +231,9 @@ export const NotEditable: StoryObj<HvCanvasToolbarTabsProps> = {
   render: (args) => (
     <HvCanvasToolbarTabs disableTabEdit icon={<Leaf />} {...args} />
   ),
-};
+});
 
-export const NotRemovable: StoryObj<HvCanvasToolbarTabsProps> = {
+export const NotRemovable = meta.story({
   parameters: {
     docs: {
       description: {
@@ -255,7 +251,7 @@ export const NotRemovable: StoryObj<HvCanvasToolbarTabsProps> = {
   render: (args) => (
     <HvCanvasToolbarTabs hideCreateNew disableTabEdit {...args} />
   ),
-};
+});
 
 // `defaultTabs` passed statically because the icons make storybook freeze
 const defaultTabs = [
@@ -273,7 +269,7 @@ const defaultTabs3 = [
   { id: "tab2", label: "My tab with a very long label", icon: <Leaf /> },
 ];
 
-export const Test: StoryObj = {
+export const Test = meta.story({
   render: () => (
     <div className="flex flex-col gap-xs">
       <HvCanvasToolbarTabs />
@@ -285,4 +281,4 @@ export const Test: StoryObj = {
       <HvCanvasToolbarTabs defaultTabs={defaultTabs3} />
     </div>
   ),
-};
+});

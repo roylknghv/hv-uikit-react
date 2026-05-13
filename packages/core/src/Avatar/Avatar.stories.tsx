@@ -1,18 +1,14 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
-import {
-  HvAvatar,
-  HvButtonBase,
-  type HvAvatarProps,
-} from "@hitachivantara/uikit-react-core";
+import { HvAvatar, HvButtonBase } from "@hitachivantara/uikit-react-core";
 import { Bookmark, Link as LinkIcon } from "@hitachivantara/uikit-react-icons";
 
-const meta: Meta<typeof HvAvatar> = {
+import preview from "../../../../.storybook/preview";
+
+const meta = preview.meta({
   title: "Components/Avatar",
   component: HvAvatar,
-};
-export default meta;
+});
 
-export const Main: StoryObj<HvAvatarProps> = {
+export const Main = meta.story({
   args: {
     size: "md",
     backgroundColor: "text",
@@ -34,9 +30,9 @@ export const Main: StoryObj<HvAvatarProps> = {
   render: (args) => {
     return <HvAvatar {...args}>AB</HvAvatar>;
   },
-};
+});
 
-export const Actions: StoryObj<HvAvatarProps> = {
+export const Actions = meta.story({
   parameters: {
     docs: {
       description: {
@@ -98,9 +94,9 @@ export const Actions: StoryObj<HvAvatarProps> = {
       </>
     );
   },
-};
+});
 
-export const Test: StoryObj = {
+export const Test = meta.story({
   render: () => (
     <div className="flex gap-xs">
       <HvAvatar size="xs" />
@@ -133,4 +129,4 @@ export const Test: StoryObj = {
       />
     </div>
   ),
-};
+});

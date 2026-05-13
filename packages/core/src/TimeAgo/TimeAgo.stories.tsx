@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { css } from "@emotion/css";
-import type { Meta, StoryObj } from "@storybook/react-vite";
 import {
   HvRadio,
   HvRadioGroup,
   HvTimeAgo,
   theme,
-  type HvTimeAgoProps,
 } from "@hitachivantara/uikit-react-core";
+
+import preview from "../../../../.storybook/preview";
 
 const styles = {
   container: css({
@@ -26,13 +26,12 @@ const styles = {
   }),
 };
 
-const meta: Meta<typeof HvTimeAgo> = {
+const meta = preview.meta({
   title: "Components/Time Ago",
   component: HvTimeAgo,
-};
-export default meta;
+});
 
-export const Main: StoryObj<HvTimeAgoProps> = {
+export const Main = meta.story({
   args: {
     timestamp: Date.now(),
     locale: "en",
@@ -48,7 +47,7 @@ export const Main: StoryObj<HvTimeAgoProps> = {
   render: (args) => {
     return <HvTimeAgo {...args} />;
   },
-};
+});
 
 const dates = [
   new Date(),
@@ -69,7 +68,7 @@ const dates = [
   new Date().setMonth(new Date().getMonth() + 6),
 ].map((date) => date.valueOf());
 
-export const LocaleOverride: StoryObj<HvTimeAgoProps> = {
+export const LocaleOverride = meta.story({
   parameters: {
     docs: {
       description: {
@@ -120,4 +119,4 @@ export const LocaleOverride: StoryObj<HvTimeAgoProps> = {
       </div>
     );
   },
-};
+});

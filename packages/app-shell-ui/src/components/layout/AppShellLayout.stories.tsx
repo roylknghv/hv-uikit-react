@@ -3,11 +3,12 @@ import { ErrorBoundary } from "react-error-boundary";
 import { HelmetProvider } from "react-helmet-async";
 import { I18nextProvider } from "react-i18next";
 import { MemoryRouter } from "react-router-dom";
-import type { Decorator, Meta, StoryObj } from "@storybook/react-vite";
+import type { Decorator } from "@storybook/react-vite";
 import type { HvAppShellConfig } from "@hitachivantara/app-shell-shared";
 import { setupChromatic } from "@hitachivantara/internal";
 import { HvButton } from "@hitachivantara/uikit-react-core";
 
+import preview from "../../../../../.storybook/preview";
 import { createI18NextInstance, useI18nInit } from "../../i18n";
 import GenericError from "../../pages/GenericError";
 import NotFound from "../../pages/NotFound";
@@ -34,11 +35,11 @@ const BoundaryDecorator: Decorator = (Story) => (
   </ErrorBoundary>
 );
 
-export default {
+const meta = preview.meta({
   title: "Tests/AppShell Layout",
-} satisfies Meta;
+});
 
-export const Main: StoryObj = {
+export const Main = meta.story({
   parameters: {
     ...setupChromatic("light", 5000),
   },
@@ -146,9 +147,9 @@ export const Main: StoryObj = {
       </TestProvider>
     );
   },
-};
+});
 
-export const ErrorPage: StoryObj = {
+export const ErrorPage = meta.story({
   parameters: {
     ...setupChromatic("light", 5000),
   },
@@ -160,7 +161,7 @@ export const ErrorPage: StoryObj = {
       <GenericError />
     </div>
   ),
-};
+});
 
 function TestProvider({
   config,

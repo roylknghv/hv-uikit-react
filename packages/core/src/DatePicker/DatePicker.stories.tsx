@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { Decorator, Meta, StoryObj } from "@storybook/react-vite";
+import type { Decorator } from "@storybook/react-vite";
 import { expect } from "storybook/test";
 import { setupChromatic } from "@hitachivantara/internal";
 import {
@@ -10,23 +10,23 @@ import {
   HvPanel,
   HvRadio,
   HvRadioGroup,
-  type HvDatePickerProps,
 } from "@hitachivantara/uikit-react-core";
+
+import preview from "../../../../.storybook/preview";
 
 const containerDecorator: Decorator = (Story) => (
   <div className="decorator w-240px min-h-440px">{Story()}</div>
 );
 
-const meta: Meta<typeof HvDatePicker> = {
+const meta = preview.meta({
   title: "Components/Date Picker",
   // TODO: HvCalendar should have its own docs
   // @ts-ignore https://github.com/storybookjs/storybook/issues/23170
   subcomponents: { HvCalendar },
   component: HvDatePicker,
-};
-export default meta;
+});
 
-export const Main: StoryObj<HvDatePickerProps> = {
+export const Main = meta.story({
   args: {
     placeholder: "Select date",
     label: "Date",
@@ -56,9 +56,9 @@ export const Main: StoryObj<HvDatePickerProps> = {
   render: (args) => {
     return <HvDatePicker {...args} />;
   },
-};
+});
 
-export const Variants: StoryObj<HvDatePickerProps> = {
+export const Variants = meta.story({
   parameters: {
     docs: {
       description: {
@@ -92,9 +92,9 @@ export const Variants: StoryObj<HvDatePickerProps> = {
       </div>
     );
   },
-};
+});
 
-export const Localized: StoryObj<HvDatePickerProps> = {
+export const Localized = meta.story({
   parameters: {
     docs: {
       description: {
@@ -130,9 +130,9 @@ export const Localized: StoryObj<HvDatePickerProps> = {
       </>
     );
   },
-};
+});
 
-export const RangeMode: StoryObj<HvDatePickerProps> = {
+export const RangeMode = meta.story({
   parameters: {
     docs: {
       description: {
@@ -157,9 +157,9 @@ export const RangeMode: StoryObj<HvDatePickerProps> = {
       />
     );
   },
-};
+});
 
-export const NearInvalid: StoryObj<HvDatePickerProps> = {
+export const NearInvalid = meta.story({
   parameters: {
     docs: {
       description: {
@@ -181,9 +181,9 @@ export const NearInvalid: StoryObj<HvDatePickerProps> = {
       />
     );
   },
-};
+});
 
-export const WithSelectionList: StoryObj<HvDatePickerProps> = {
+export const WithSelectionList = meta.story({
   // For a11y
   play: async ({ canvas, userEvent }) => {
     await userEvent.click(canvas.getByRole("combobox", { name: /date/i }));
@@ -275,16 +275,16 @@ export const WithSelectionList: StoryObj<HvDatePickerProps> = {
       />
     );
   },
-};
+});
 
-export const Test: StoryObj<HvDatePickerProps> = {
+export const Test = meta.story({
   play: async ({ canvas, userEvent }) => {
     await userEvent.click(canvas.getByRole("button", { name: /october/i }));
   },
   parameters: {
     ...setupChromatic("light", 5000),
   },
-  render: (args, context: any) => {
+  render: () => {
     const value = new Date("2023-01-01");
     return (
       <div className="flex gap-xs">
@@ -299,8 +299,8 @@ export const Test: StoryObj<HvDatePickerProps> = {
           />
           <HvDatePicker required label="Required" value={value} expanded />
         </div>
-        <div>{WithSelectionList.render?.({ expanded: true }, context)}</div>
+        <div>{WithSelectionList.input.render?.({ expanded: true })}</div>
       </div>
     );
   },
-};
+});

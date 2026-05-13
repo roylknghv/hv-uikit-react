@@ -1,5 +1,4 @@
 import { useState } from "react";
-import type { Meta, StoryObj } from "@storybook/react-vite";
 import { expect, within } from "storybook/test";
 import { HvButton } from "@hitachivantara/uikit-react-core";
 import { Favorite, Heart } from "@hitachivantara/uikit-react-icons";
@@ -8,7 +7,9 @@ import {
   type HvCanvasBottomPanelProps,
 } from "@hitachivantara/uikit-react-pentaho";
 
-const meta: Meta<typeof HvCanvasBottomPanel> = {
+import preview from "../../../../../.storybook/preview";
+
+const meta = preview.meta({
   title: "Pentaho/Canvas/Bottom Panel",
   component: HvCanvasBottomPanel,
   parameters: {
@@ -22,10 +23,9 @@ const meta: Meta<typeof HvCanvasBottomPanel> = {
       },
     },
   },
-};
-export default meta;
+});
 
-export const Main: StoryObj<HvCanvasBottomPanelProps> = {
+export const Main = meta.story({
   args: {
     open: true,
     tabs: [
@@ -64,7 +64,7 @@ export const Main: StoryObj<HvCanvasBottomPanelProps> = {
       </HvCanvasBottomPanel>
     );
   },
-};
+});
 
 const leftActions = [
   { id: "action1", label: "Action 1", icon: <Favorite /> },
@@ -81,7 +81,7 @@ const tabs: HvCanvasBottomPanelProps["tabs"] = [
   { id: 1, title: "Tab 2" },
 ];
 
-export const InteractionTest: StoryObj = {
+export const InteractionTest = meta.story({
   globals: {
     viewport: { value: "split" },
   },
@@ -183,9 +183,9 @@ export const InteractionTest: StoryObj = {
       </>
     );
   },
-};
+});
 
-export const Test: StoryObj = {
+export const Test = meta.story({
   render: () => (
     <div className="flex flex-col gap-xs">
       <HvCanvasBottomPanel
@@ -238,4 +238,4 @@ export const Test: StoryObj = {
       </HvCanvasBottomPanel>
     </div>
   ),
-};
+});

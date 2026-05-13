@@ -1,16 +1,15 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
 import {
   HvSearchInput,
-  type HvInputProps,
 } from "@hitachivantara/uikit-react-core";
 
-const meta: Meta<typeof HvSearchInput> = {
+import preview from "../../../../.storybook/preview";
+
+const meta = preview.meta({
   title: "Components/Search Input",
   component: HvSearchInput,
-};
-export default meta;
+});
 
-export const Main: StoryObj<HvInputProps> = {
+export const Main = meta.story({
   args: {
     label: "Search",
     description: "Please enter a search term",
@@ -43,4 +42,4 @@ export const Main: StoryObj<HvInputProps> = {
     minCharQuantity: { control: { disable: true } },
     maxCharQuantity: { control: { disable: true } },
   },
-};
+});

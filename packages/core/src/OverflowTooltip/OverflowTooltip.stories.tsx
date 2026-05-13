@@ -1,16 +1,15 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
 import {
   HvOverflowTooltip,
-  type HvOverflowTooltipProps,
 } from "@hitachivantara/uikit-react-core";
 
-const meta: Meta<typeof HvOverflowTooltip> = {
+import preview from "../../../../.storybook/preview";
+
+const meta = preview.meta({
   title: "Components/Overflow Tooltip",
   component: HvOverflowTooltip,
-};
-export default meta;
+});
 
-export const Main: StoryObj<HvOverflowTooltipProps> = {
+export const Main = meta.story({
   args: {
     open: true,
     placement: "top",
@@ -30,12 +29,12 @@ export const Main: StoryObj<HvOverflowTooltipProps> = {
   render: (args) => {
     return <HvOverflowTooltip {...args} />;
   },
-};
+});
 
 const makeText = (str: string) =>
   `This is a ${str} long text that should be cut because it doesn't fit`;
 
-export const Test: StoryObj<HvOverflowTooltipProps> = {
+export const Test = meta.story({
   args: {
     data: makeText("extremely ".repeat(12)),
   },
@@ -58,4 +57,4 @@ export const Test: StoryObj<HvOverflowTooltipProps> = {
       </>
     );
   },
-};
+});

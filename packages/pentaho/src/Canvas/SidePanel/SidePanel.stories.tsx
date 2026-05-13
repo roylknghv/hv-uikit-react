@@ -1,16 +1,15 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
 import {
   HvCanvasSidePanel,
-  type HvCanvasSidePanelProps,
 } from "@hitachivantara/uikit-react-pentaho";
 
-const meta: Meta<typeof HvCanvasSidePanel> = {
+import preview from "../../../../../.storybook/preview";
+
+const meta = preview.meta({
   title: "Pentaho/Canvas/Side Panel",
   component: HvCanvasSidePanel,
-};
-export default meta;
+});
 
-export const Main: StoryObj<HvCanvasSidePanelProps> = {
+export const Main = meta.story({
   args: { defaultOpen: true },
   argTypes: {
     classes: { control: { disable: true } },
@@ -29,4 +28,4 @@ export const Main: StoryObj<HvCanvasSidePanelProps> = {
       <p>Main content</p>
     </div>
   ),
-};
+});

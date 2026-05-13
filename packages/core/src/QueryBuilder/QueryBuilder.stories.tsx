@@ -1,21 +1,19 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
 import { setupChromatic } from "@hitachivantara/internal";
 import {
   HvQueryBuilder,
-  type HvQueryBuilderProps,
 } from "@hitachivantara/uikit-react-core";
 
+import preview from "../../../../.storybook/preview";
 import { CustomRenderers as CustomRenderersStory } from "./stories/CustomRenderers";
 import { Main as MainStory } from "./stories/Main";
 import { ReadOnly as ReadOnlyStory } from "./stories/ReadOnly";
 
-const meta: Meta<typeof HvQueryBuilder> = {
+const meta = preview.meta({
   title: "Components/Query Builder",
   component: HvQueryBuilder,
-};
-export default meta;
+});
 
-export const Main: StoryObj<HvQueryBuilderProps> = {
+export const Main = meta.story({
   args: { disableConfirmation: false },
   argTypes: {
     classes: { control: { disable: true } },
@@ -33,9 +31,9 @@ export const Main: StoryObj<HvQueryBuilderProps> = {
   render: (args) => {
     return <MainStory {...args} />;
   },
-};
+});
 
-export const ReadOnly: StoryObj<HvQueryBuilderProps> = {
+export const ReadOnly = meta.story({
   parameters: {
     docs: {
       description: {
@@ -45,9 +43,9 @@ export const ReadOnly: StoryObj<HvQueryBuilderProps> = {
     ...setupChromatic(),
   },
   render: () => <ReadOnlyStory />,
-};
+});
 
-export const CustomRenderers: StoryObj<HvQueryBuilderProps> = {
+export const CustomRenderers = meta.story({
   parameters: {
     docs: {
       description: {
@@ -57,4 +55,4 @@ export const CustomRenderers: StoryObj<HvQueryBuilderProps> = {
     },
   },
   render: () => <CustomRenderersStory />,
-};
+});

@@ -1,4 +1,3 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
 import isChromatic from "chromatic/isChromatic";
 import { expect, within } from "storybook/test";
 import { setupChromatic } from "@hitachivantara/internal";
@@ -7,15 +6,15 @@ import {
   HvDialogActions,
   HvDialogContent,
   HvDialogTitle,
-  type HvDialogProps,
 } from "@hitachivantara/uikit-react-core";
 
+import preview from "../../../../.storybook/preview";
 import { FormStory } from "./stories/FormStory";
 import { LongContentStory } from "./stories/LongContentStory";
 import { MainStory } from "./stories/MainStory";
 import { SemanticVariantsStory } from "./stories/SemanticVariantsStory";
 
-const meta: Meta<typeof HvDialog> = {
+const meta = preview.meta({
   title: "Components/Dialog",
   component: HvDialog,
   // @ts-ignore https://github.com/storybookjs/storybook/issues/23170
@@ -25,10 +24,9 @@ const meta: Meta<typeof HvDialog> = {
       <div style={{ minHeight: isChromatic() ? 768 : 250 }}>{Story()}</div>
     ),
   ],
-};
-export default meta;
+});
 
-export const Main: StoryObj<HvDialogProps> = {
+export const Main = meta.story({
   args: {
     fullscreen: false,
     disableBackdropClick: false,
@@ -40,10 +38,12 @@ export const Main: StoryObj<HvDialogProps> = {
     maxWidth: { control: "select", options: ["xs", "sm", "md", "lg", "xl"] },
     classes: { control: { disable: true } },
   },
-  render: (args) => <MainStory {...args} />,
-};
+  render: ({ ref, ...args }) => {
+    return <MainStory {...args} />;
+  },
+});
 
-export const SemanticVariants: StoryObj<HvDialogProps> = {
+export const SemanticVariants = meta.story({
   parameters: {
     docs: {
       description: {
@@ -71,9 +71,9 @@ export const SemanticVariants: StoryObj<HvDialogProps> = {
     await expect(canvas.getByRole("dialog")).toBeInTheDocument();
   },
   render: () => <SemanticVariantsStory />,
-};
+});
 
-export const Form: StoryObj<HvDialogProps> = {
+export const Form = meta.story({
   parameters: {
     docs: {
       description: {
@@ -97,9 +97,9 @@ export const Form: StoryObj<HvDialogProps> = {
   },
   decorators: [(Story) => <div style={{ minHeight: 440 }}>{Story()}</div>],
   render: () => <FormStory />,
-};
+});
 
-export const LongContent: StoryObj<HvDialogProps> = {
+export const LongContent = meta.story({
   parameters: {
     docs: {
       description: {
@@ -118,4 +118,4 @@ export const LongContent: StoryObj<HvDialogProps> = {
   },
   decorators: [(Story) => <div style={{ minHeight: 400 }}>{Story()}</div>],
   render: () => <LongContentStory />,
-};
+});

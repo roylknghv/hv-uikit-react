@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { css } from "@emotion/css";
-import type { Meta, StoryObj } from "@storybook/react-vite";
 import {
   HvBadge,
   HvSimpleGrid,
@@ -17,15 +16,16 @@ import {
   Reload,
 } from "@hitachivantara/uikit-react-icons";
 
-const meta: Meta<typeof HvTabs> = {
+import preview from "../../../../.storybook/preview";
+
+const meta = preview.meta({
   title: "Components/Tabs",
   component: HvTabs,
   // @ts-ignore https://github.com/storybookjs/storybook/issues/23170
   subcomponents: { HvTab },
-};
-export default meta;
+});
 
-export const Main: StoryObj<HvTabsProps> = {
+export const Main = meta.story({
   args: {},
   argTypes: {
     onChange: { control: { disable: true } },
@@ -43,9 +43,9 @@ export const Main: StoryObj<HvTabsProps> = {
       </HvTabs>
     );
   },
-};
+});
 
-export const Variants: StoryObj<HvTabsProps> = {
+export const Variants = meta.story({
   parameters: {
     docs: {
       description: {
@@ -82,9 +82,9 @@ export const Variants: StoryObj<HvTabsProps> = {
       </div>
     );
   },
-};
+});
 
-export const Icons: StoryObj<HvTabsProps> = {
+export const Icons = meta.story({
   render: () => {
     const [value, setValue] = useState(0);
 
@@ -138,9 +138,9 @@ export const Icons: StoryObj<HvTabsProps> = {
       </>
     );
   },
-};
+});
 
-export const Test: StoryObj = {
+export const Test = meta.story({
   render: () => (
     <HvSimpleGrid
       cols={3}
@@ -218,9 +218,9 @@ export const Test: StoryObj = {
       </div>
     </HvSimpleGrid>
   ),
-};
+});
 
-export const Floating: StoryObj<HvTabsProps> = {
+export const Floating = meta.story({
   parameters: {
     docs: {
       description: {
@@ -323,4 +323,4 @@ export const Floating: StoryObj<HvTabsProps> = {
       </div>
     );
   },
-};
+});

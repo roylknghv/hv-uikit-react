@@ -1,20 +1,16 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
-import {
-  HvAvatar,
-  HvAvatarGroup,
-  type HvAvatarGroupProps,
-} from "@hitachivantara/uikit-react-core";
+import { HvAvatar, HvAvatarGroup } from "@hitachivantara/uikit-react-core";
 
-const meta: Meta<typeof HvAvatarGroup> = {
+import preview from "../../../../.storybook/preview";
+
+const meta = preview.meta({
   title: "Components/Avatar Group",
   component: HvAvatarGroup,
   decorators: [
     (Story) => <div className="flex items-center gap-xs">{Story()}</div>,
   ],
-};
-export default meta;
+});
 
-export const Main: StoryObj<HvAvatarGroupProps> = {
+export const Main = meta.story({
   args: {
     size: "md",
     spacing: "loose",
@@ -39,9 +35,9 @@ export const Main: StoryObj<HvAvatarGroupProps> = {
       </HvAvatarGroup>
     );
   },
-};
+});
 
-export const Test: StoryObj = {
+export const Test = meta.story({
   render: () => (
     <div style={{ display: "flex", gap: 20 }}>
       <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
@@ -159,4 +155,4 @@ export const Test: StoryObj = {
       </div>
     </div>
   ),
-};
+});

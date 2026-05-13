@@ -1,9 +1,8 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
 import {
   HvStepNavigation,
-  type HvStepNavigationProps,
 } from "@hitachivantara/uikit-react-lab";
 
+import preview from "../../../../.storybook/preview";
 import {
   HvDefaultNavigation,
   HvStep,
@@ -28,7 +27,7 @@ const steps: StepType[] = [
   { title: "Disabled", state: "Disabled" },
 ];
 
-const meta: Meta<typeof HvStepNavigation> = {
+const meta = preview.meta({
   title: "Lab/Step Navigation",
   component: HvStepNavigation,
   // @ts-ignore https://github.com/storybookjs/storybook/issues/23170
@@ -38,10 +37,9 @@ const meta: Meta<typeof HvStepNavigation> = {
     HvSimpleNavigation,
     HvDot,
   } as unknown,
-};
-export default meta;
+});
 
-export const Main: StoryObj<HvStepNavigationProps> = {
+export const Main = meta.story({
   args: {
     type: "Default",
     steps,
@@ -52,9 +50,9 @@ export const Main: StoryObj<HvStepNavigationProps> = {
     steps: { control: { disable: true } },
   },
   render: (args) => <HvStepNavigation {...args} />,
-};
+});
 
-export const Variants: StoryObj<HvStepNavigationProps> = {
+export const Variants = meta.story({
   parameters: {
     docs: {
       description: {
@@ -90,9 +88,9 @@ export const Variants: StoryObj<HvStepNavigationProps> = {
       />
     </div>
   ),
-};
+});
 
-export const Width: StoryObj<HvStepNavigationProps> = {
+export const Width = meta.story({
   parameters: {
     docs: {
       description: {
@@ -113,4 +111,4 @@ export const Width: StoryObj<HvStepNavigationProps> = {
       }}
     />
   ),
-};
+});

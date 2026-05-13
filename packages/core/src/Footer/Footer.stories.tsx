@@ -1,17 +1,16 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
 import {
   HvFooter,
   HvTypography,
-  type HvFooterProps,
 } from "@hitachivantara/uikit-react-core";
 
-const meta: Meta<typeof HvFooter> = {
+import preview from "../../../../.storybook/preview";
+
+const meta = preview.meta({
   title: "Components/Footer",
   component: HvFooter,
-};
-export default meta;
+});
 
-export const Main: StoryObj<HvFooterProps> = {
+export const Main = meta.story({
   argTypes: {
     classes: { control: { disable: true } },
   },
@@ -34,4 +33,4 @@ export const Main: StoryObj<HvFooterProps> = {
       />
     );
   },
-};
+});

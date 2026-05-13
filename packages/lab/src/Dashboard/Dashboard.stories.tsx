@@ -1,16 +1,12 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
 import { HvSection, HvTypography } from "@hitachivantara/uikit-react-core";
-import {
-  HvDashboard,
-  type HvDashboardProps,
-} from "@hitachivantara/uikit-react-lab";
+import { HvDashboard } from "@hitachivantara/uikit-react-lab";
 
-const meta: Meta<typeof HvDashboard> = {
+import preview from "../../../../.storybook/preview";
+
+const meta = preview.meta({
   title: "Lab/Dashboard",
   component: HvDashboard,
-};
-
-export default meta;
+});
 
 const items = ["1", "2", "3", "4"].map((id) => ({
   id,
@@ -18,7 +14,7 @@ const items = ["1", "2", "3", "4"].map((id) => ({
   label: `Item ${id}`,
 }));
 
-export const Main: StoryObj<HvDashboardProps> = {
+export const Main = meta.story({
   argTypes: {
     classes: { control: { disable: true } },
   },
@@ -41,4 +37,4 @@ export const Main: StoryObj<HvDashboardProps> = {
       </HvDashboard>
     );
   },
-};
+});

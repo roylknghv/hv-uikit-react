@@ -42,7 +42,7 @@ const DEFAULT_LABELS = {
   dropdownMenu: "Dropdown menu",
 };
 
-interface ToolbarTabsTab {
+export interface HvToolbarTabsTab {
   id: string;
   label: string;
   icon?: React.ReactNode;
@@ -55,9 +55,9 @@ export interface HvCanvasToolbarTabsProps extends HvBaseProps<
   "onChange"
 > {
   /** When controlled, defines the tabs. */
-  tabs?: ToolbarTabsTab[];
+  tabs?: HvToolbarTabsTab[];
   /** When uncontrolled, defines the initial tabs. */
-  defaultTabs?: ToolbarTabsTab[];
+  defaultTabs?: HvToolbarTabsTab[];
   /** Id of the selected tab if it needs to be controlled. */
   selectedTabId?: string;
   /** Defines the icon to be placed before the label when a new tab is created through the "Create new" button. If not defined, no icon is used. */
@@ -72,7 +72,7 @@ export interface HvCanvasToolbarTabsProps extends HvBaseProps<
   /** Callback triggered when the tabs change: new tab added, tab removed, tab reorder, and label updated. */
   onChange?: (
     event: React.MouseEvent<HTMLButtonElement> | React.SyntheticEvent,
-    tabs: ToolbarTabsTab[],
+    tabs: HvToolbarTabsTab[],
   ) => void;
   /** An object containing all the labels. */
   labels?: Partial<typeof DEFAULT_LABELS>;
@@ -130,7 +130,7 @@ export const HvCanvasToolbarTabs = forwardRef<
 
   const handleChangeTabs = (
     event: React.MouseEvent<HTMLButtonElement> | React.SyntheticEvent,
-    newTabs: ToolbarTabsTab[],
+    newTabs: HvToolbarTabsTab[],
   ) => {
     setTabs(newTabs);
     onChangeProp?.(event, newTabs);
@@ -145,8 +145,8 @@ export const HvCanvasToolbarTabs = forwardRef<
   };
 
   const handleCreateNew: HvButtonProps["onClick"] = (event) => {
-    const newTabs: ToolbarTabsTab[] = [...tabs];
-    const newTab: ToolbarTabsTab = {
+    const newTabs: HvToolbarTabsTab[] = [...tabs];
+    const newTab: HvToolbarTabsTab = {
       id: uniqueId(),
       label: `${labels.undefined} ${newTabs.length + 1}`,
       icon: iconProp,

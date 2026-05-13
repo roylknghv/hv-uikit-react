@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import { useArgs } from "storybook/preview-api";
 import { expect, within } from "storybook/test";
 import { setupChromatic } from "@hitachivantara/internal";
 import {
@@ -6,24 +6,25 @@ import {
   HvButton,
   HvTooltip,
   HvTypography,
-  type HvTooltipProps,
 } from "@hitachivantara/uikit-react-core";
 import { Play } from "@hitachivantara/uikit-react-icons";
 
-const meta: Meta<typeof HvTooltip> = {
+import preview from "../../../../.storybook/preview";
+
+const meta = preview.meta({
   title: "Components/Tooltip",
   component: HvTooltip,
-};
-export default meta;
+});
 
-export const Main: StoryObj<HvTooltipProps> = {
+export const Main = meta.story({
   args: {
     open: true,
   },
   argTypes: {
     classes: { control: { disable: true } },
   },
-  render: ({ open }) => {
+  render: () => {
+    const [{ open }] = useArgs();
     return (
       <div className="flex justify-around pt-80px">
         <HvTooltip title="Grid View">
@@ -35,9 +36,9 @@ export const Main: StoryObj<HvTooltipProps> = {
       </div>
     );
   },
-};
+});
 
-export const Disabled: StoryObj<HvTooltipProps> = {
+export const Disabled = meta.story({
   parameters: {
     docs: {
       description: {
@@ -65,9 +66,9 @@ export const Disabled: StoryObj<HvTooltipProps> = {
       </HvTooltip>
     </div>
   ),
-};
+});
 
-export const CustomElements: StoryObj<HvTooltipProps> = {
+export const CustomElements = meta.story({
   parameters: {
     docs: {
       description: {
@@ -118,9 +119,9 @@ export const CustomElements: StoryObj<HvTooltipProps> = {
       </HvTooltip>
     </div>
   ),
-};
+});
 
-export const CustomContent: StoryObj<HvTooltipProps> = {
+export const CustomContent = meta.story({
   parameters: {
     docs: {
       description: {
@@ -202,4 +203,4 @@ export const CustomContent: StoryObj<HvTooltipProps> = {
       </>
     );
   },
-};
+});

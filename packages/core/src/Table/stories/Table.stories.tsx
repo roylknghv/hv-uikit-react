@@ -1,4 +1,4 @@
-import type { StoryObj } from "@storybook/react-vite";
+import { useArgs } from "storybook/preview-api";
 import { setupChromatic } from "@hitachivantara/internal";
 import {
   HvTable,
@@ -8,9 +8,9 @@ import {
   HvTableHead,
   HvTableHeader,
   HvTableRow,
-  type HvTableProps,
 } from "@hitachivantara/uikit-react-core";
 
+import preview from "../../../../../.storybook/preview";
 import { AllColumnRenderers } from "./AllColumnRenderers";
 import { ColumnResize } from "./TableHooks/ColumnResize";
 import { TestStickyHeaders as TestHeadersStory } from "./TableHooks/TableHooks.stories";
@@ -23,10 +23,11 @@ import { NoData as NoDataStory } from "./TableSamples/NoData";
 import { SimpleTable as SimpleTableStory } from "./TableSamples/SimpleTable";
 import { TableEditable } from "./TableSamples/TableEditable";
 
-export default {
+const meta = preview.meta({
   title: "Visualizations/Table",
   tags: ["skipTestRunner"],
   component: HvTable,
+
   // @ts-ignore https://github.com/storybookjs/storybook/issues/23170
   subcomponents: {
     HvTableContainer,
@@ -36,9 +37,9 @@ export default {
     HvTableBody,
     HvTableCell,
   },
-};
+});
 
-export const Main: StoryObj<HvTableProps> = {
+export const Main = meta.story({
   args: {
     stickyColumns: false,
     stickyHeader: false,
@@ -48,10 +49,13 @@ export const Main: StoryObj<HvTableProps> = {
     classes: { control: { disable: true } },
     component: { control: { disable: true } },
   },
-  render: (args) => <MainStory {...args} />,
-};
+  render: () => {
+    const [args] = useArgs();
+    return <MainStory {...args} />;
+  },
+});
 
-export const NoData: StoryObj<HvTableProps> = {
+export const NoData = meta.story({
   parameters: {
     docs: {
       description: {
@@ -60,9 +64,9 @@ export const NoData: StoryObj<HvTableProps> = {
     },
   },
   render: () => <NoDataStory />,
-};
+});
 
-export const SimpleTable: StoryObj<HvTableProps> = {
+export const SimpleTable = meta.story({
   parameters: {
     docs: {
       description: {
@@ -72,9 +76,9 @@ export const SimpleTable: StoryObj<HvTableProps> = {
     },
   },
   render: () => <SimpleTableStory />,
-};
+});
 
-export const GroupedRows: StoryObj<HvTableProps> = {
+export const GroupedRows = meta.story({
   parameters: {
     docs: {
       description: {
@@ -83,9 +87,9 @@ export const GroupedRows: StoryObj<HvTableProps> = {
     },
   },
   render: () => <GroupedRowsStory />,
-};
+});
 
-export const ListRow: StoryObj<HvTableProps> = {
+export const ListRow = meta.story({
   parameters: {
     docs: {
       description: {
@@ -94,21 +98,21 @@ export const ListRow: StoryObj<HvTableProps> = {
     },
   },
   render: () => <ListRowStory />,
-};
+});
 
-export const Renderers: StoryObj = {
+export const Renderers = meta.story({
   render: () => <AllColumnRenderers />,
-};
+});
 
-export const CompleteTable: StoryObj = {
+export const CompleteTable = meta.story({
   render: () => <CompleteTableSection />,
-};
+});
 
-export const Editable: StoryObj = {
+export const Editable = meta.story({
   render: () => <TableEditable />,
-};
+});
 
-export const Test: StoryObj = {
+export const Test = meta.story({
   parameters: {
     ...setupChromatic("all"),
   },
@@ -120,7 +124,7 @@ export const Test: StoryObj = {
 
     await userEvent.click(canvas.getByRole("checkbox", { name: "0 / 64" }));
   },
-  render: (args, context) => (
+  render: () => (
     <>
       <div className="grid grid-cols-2 gap-sm">
         <div className="flex flex-col gap-sm">
@@ -132,7 +136,7 @@ export const Test: StoryObj = {
         <div className="flex flex-col gap-sm">
           <NoDataStory />
           <ColumnResize />
-          {TestHeadersStory.render?.(TestHeadersStory.args!, context)}
+          {TestHeadersStory.input.render?.()}
           <CompleteTableSection />
         </div>
       </div>
@@ -140,4 +144,4 @@ export const Test: StoryObj = {
       <AllColumnRenderers />
     </>
   ),
-};
+});

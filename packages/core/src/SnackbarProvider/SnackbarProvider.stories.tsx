@@ -1,12 +1,11 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
-import type { HvSnackbarProvider } from "@hitachivantara/uikit-react-core";
 
+import preview from "../../../../.storybook/preview";
 import { SnackbarProviderButtons } from "./stories/SnackbarProviderButtons";
 
-export default {
+const meta = preview.meta({
   title: "Components/Snackbar Provider",
-} as Meta<typeof HvSnackbarProvider>;
+});
 
-export const Provider: StoryObj = {
+export const Provider = meta.story({
   render: () => <SnackbarProviderButtons />,
-};
+});

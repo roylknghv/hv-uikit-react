@@ -1,16 +1,15 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
 import {
   HvSimpleGrid,
-  type HvSimpleGridProps,
 } from "@hitachivantara/uikit-react-core";
 
-const meta: Meta<typeof HvSimpleGrid> = {
+import preview from "../../../../.storybook/preview";
+
+const meta = preview.meta({
   title: "Components/Simple Grid",
   component: HvSimpleGrid,
-};
-export default meta;
+});
 
-export const Main: StoryObj<HvSimpleGridProps> = {
+export const Main = meta.story({
   args: {
     spacing: "sm",
     cols: 2,
@@ -32,9 +31,9 @@ export const Main: StoryObj<HvSimpleGridProps> = {
       </HvSimpleGrid>
     );
   },
-};
+});
 
-export const BreakpointsGrid: StoryObj<HvSimpleGridProps> = {
+export const BreakpointsGrid = meta.story({
   args: {
     spacing: "sm",
     cols: 2,
@@ -58,4 +57,4 @@ export const BreakpointsGrid: StoryObj<HvSimpleGridProps> = {
       </HvSimpleGrid>
     );
   },
-};
+});

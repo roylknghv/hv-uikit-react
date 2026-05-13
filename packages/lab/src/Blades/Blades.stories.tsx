@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { css } from "@emotion/css";
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import { useArgs } from "storybook/preview-api";
 import {
   HvButton,
   HvCard,
@@ -15,19 +15,16 @@ import {
   Table,
   TopXS,
 } from "@hitachivantara/uikit-react-icons";
-import {
-  HvBlade,
-  HvBlades,
-  type HvBladesProps,
-} from "@hitachivantara/uikit-react-lab";
+import { HvBlade, HvBlades } from "@hitachivantara/uikit-react-lab";
 
-const meta: Meta<typeof HvBlades> = {
+import preview from "../../../../.storybook/preview";
+
+const meta = preview.meta({
   title: "Lab/Blades/Blades",
   component: HvBlades,
-};
-export default meta;
+});
 
-export const Main: StoryObj<HvBladesProps> = {
+export const Main = meta.story({
   args: {
     expanded: undefined,
     defaultExpanded: undefined,
@@ -39,7 +36,8 @@ export const Main: StoryObj<HvBladesProps> = {
     classes: { control: { disable: true } },
     children: { control: { disable: true } },
   },
-  render: (args) => {
+  render: () => {
+    const [args] = useArgs();
     const classes = {
       blueContainer: css({
         background:
@@ -278,9 +276,9 @@ export const Main: StoryObj<HvBladesProps> = {
       </HvBlades>
     );
   },
-};
+});
 
-export const Controlled: StoryObj<HvBladesProps> = {
+export const Controlled = meta.story({
   render: () => {
     const [expandedState, setExpandedState] = useState([0]);
     const handleToggle = (key: number) => {
@@ -388,4 +386,4 @@ export const Controlled: StoryObj<HvBladesProps> = {
       </>
     );
   },
-};
+});

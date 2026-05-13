@@ -1,9 +1,10 @@
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { Global } from "@emotion/react";
-import type { Meta, StoryObj } from "@storybook/react-vite";
 import type { HvAppShellConfig } from "@hitachivantara/app-shell-shared";
 import HvAppShell from "@hitachivantara/app-shell-ui";
 import { setupChromatic } from "@hitachivantara/internal";
+
+import preview from "../../../../../.storybook/preview";
 
 const externalsEntries = [
   "react@18",
@@ -27,7 +28,7 @@ const importMap = {
   },
 };
 
-export default {
+const meta = preview.meta({
   title: "Tests/AppShell",
   component: HvAppShell,
   // TODO: leverage the inlined importmap or separate AppShell UI from module loading
@@ -42,33 +43,35 @@ export default {
       </HelmetProvider>
     ),
   ],
-} satisfies Meta;
+});
 
-export const Main: StoryObj<HvAppShellConfig> = {
+export const Main = meta.story({
   args: {
-    name: "AppShell Test App",
-    navigationMode: "TOP_AND_LEFT",
-    logo: {
-      name: "PENTAHO",
-      description: "Logo Description",
-    },
-    menu: [
-      { label: "Home", target: "/" },
-      {
-        label: "About",
-        target: "/about",
-        submenus: [
-          { label: "Submenu 1", target: "/about/submenu1" },
-          { label: "Submenu 2", target: "/about/submenu2" },
+    config: {
+      name: "AppShell Test App",
+      navigationMode: "TOP_AND_LEFT",
+      logo: {
+        name: "PENTAHO",
+        description: "Logo Description",
+      },
+      menu: [
+        { label: "Home", target: "/" },
+        {
+          label: "About",
+          target: "/about",
+          submenus: [
+            { label: "Submenu 1", target: "/about/submenu1" },
+            { label: "Submenu 2", target: "/about/submenu2" },
+          ],
+        },
+        { label: "Other", target: "/other" },
+      ],
+      mainPanel: {
+        views: [
+          { bundle: "@hv/sample-app/pages/SecondPage.js", route: "/" },
+          { bundle: "@hv/sample-app/pages/SecondPage.js", route: "/about" },
         ],
       },
-      { label: "Other", target: "/other" },
-    ],
-    mainPanel: {
-      views: [
-        { bundle: "@hv/sample-app/pages/SecondPage.js", route: "/" },
-        { bundle: "@hv/sample-app/pages/SecondPage.js", route: "/about" },
-      ],
     },
   },
   argTypes: {},
@@ -82,9 +85,9 @@ export const Main: StoryObj<HvAppShellConfig> = {
   render: (args, context) => {
     const [theme, colorMode] = context.globals.theme?.split(" ") || [];
     const config: HvAppShellConfig = {
-      ...args,
+      ...args.config,
       logo: {
-        ...args.logo,
+        ...args.config?.logo,
         name: theme === "pentaho" ? "PENTAHO" : "HITACHI",
       },
       navigationMode: theme === "pentaho" ? "ONLY_LEFT" : "TOP_AND_LEFT",
@@ -93,4 +96,4 @@ export const Main: StoryObj<HvAppShellConfig> = {
 
     return <HvAppShell config={config} />;
   },
-};
+});

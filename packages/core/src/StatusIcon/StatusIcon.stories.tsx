@@ -1,16 +1,15 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
 import {
   HvStatusIcon,
-  type HvStatusIconProps,
 } from "@hitachivantara/uikit-react-core";
 
-const meta: Meta<typeof HvStatusIcon> = {
+import preview from "../../../../.storybook/preview";
+
+const meta = preview.meta({
   title: "Components/Status Icon",
   component: HvStatusIcon,
-};
-export default meta;
+});
 
-export const Main: StoryObj<HvStatusIconProps> = {
+export const Main = meta.story({
   args: {
     variant: "info",
     size: "sm",
@@ -19,9 +18,9 @@ export const Main: StoryObj<HvStatusIconProps> = {
   argTypes: {
     classes: { control: { disable: true } },
   },
-};
+});
 
-export const Test: StoryObj = {
+export const Test = meta.story({
   decorators: [
     (Story) => <div className="flex flex-col gap-xs">{Story()}</div>,
   ],
@@ -72,4 +71,4 @@ export const Test: StoryObj = {
       </div>
     </>
   ),
-};
+});

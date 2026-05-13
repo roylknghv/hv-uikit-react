@@ -1,23 +1,23 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import { useArgs } from "storybook/preview-api";
 import {
   HvAccordion,
   HvListContainer,
   HvListItem,
-  type HvAccordionProps,
 } from "@hitachivantara/uikit-react-core";
+
+import preview from "../../../../.storybook/preview";
 
 const classes = {
   listContainer: "[&>li]:pl-32px",
   formContainer: "px-32px [&>*]:mb-sm",
 };
 
-const meta: Meta<typeof HvAccordion> = {
+const meta = preview.meta({
   title: "Components/Accordion",
   component: HvAccordion,
-};
-export default meta;
+});
 
-export const Main: StoryObj<HvAccordionProps> = {
+export const Main = meta.story({
   args: {
     label: "Analytics",
     headingLevel: 1,
@@ -30,7 +30,8 @@ export const Main: StoryObj<HvAccordionProps> = {
     containerProps: { control: { disable: true } },
     children: { control: { disable: true } },
   },
-  render: (args) => {
+  render: () => {
+    const [args] = useArgs();
     return (
       <HvAccordion {...args}>
         <HvListContainer
@@ -44,9 +45,9 @@ export const Main: StoryObj<HvAccordionProps> = {
       </HvAccordion>
     );
   },
-};
+});
 
-export const Disabled: StoryObj<HvAccordionProps> = {
+export const Disabled = meta.story({
   render: () => (
     <div style={{ maxWidth: 300 }}>
       <HvAccordion label="Analytics" headingLevel={3} disabled>
@@ -81,4 +82,4 @@ export const Disabled: StoryObj<HvAccordionProps> = {
       </HvAccordion>
     </div>
   ),
-};
+});

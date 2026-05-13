@@ -1,18 +1,16 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
 import {
   HvRadio,
   HvRadioGroup,
-  type HvRadioGroupProps,
 } from "@hitachivantara/uikit-react-core";
 
-const meta: Meta<typeof HvRadioGroup> = {
+import preview from "../../../../.storybook/preview";
+
+const meta = preview.meta({
   title: "Components/Radio Group",
   component: HvRadioGroup,
-};
+});
 
-export default meta;
-
-export const Main: StoryObj<HvRadioGroupProps> = {
+export const Main = meta.story({
   args: {
     label: "Choose your favorite radio button",
     name: "favorite",
@@ -34,9 +32,9 @@ export const Main: StoryObj<HvRadioGroupProps> = {
       </HvRadioGroup>
     );
   },
-};
+});
 
-export const Variants: StoryObj<HvRadioGroupProps> = {
+export const Variants = meta.story({
   decorators: [
     (Story) => <div className="flex flex-wrap justify-around">{Story()}</div>,
   ],
@@ -66,9 +64,9 @@ export const Variants: StoryObj<HvRadioGroupProps> = {
       </>
     );
   },
-};
+});
 
-export const Horizontal: StoryObj<HvRadioGroupProps> = {
+export const Horizontal = meta.story({
   parameters: {
     docs: {
       description: { story: "Layout radio buttons horizontally." },
@@ -87,4 +85,4 @@ export const Horizontal: StoryObj<HvRadioGroupProps> = {
       </HvRadioGroup>
     );
   },
-};
+});
