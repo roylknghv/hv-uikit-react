@@ -16,9 +16,11 @@ export const { staticClasses, useClasses } = createClasses("HvBadge", {
   },
   /** class applied to the badge */
   badge: {
-    position: "absolute",
-    top: 0,
-    left: "100%",
+    "&:not([data-badge-inline])": {
+      position: "absolute",
+      top: 0,
+      left: "100%",
+    },
     ...theme.typography.caption2,
     color: theme.colors.textDimmed,
     borderRadius: theme.radii.full,
@@ -28,6 +30,11 @@ export const { staticClasses, useClasses } = createClasses("HvBadge", {
     padding: "0 5px",
     wordBreak: "keep-all",
     textAlign: "center",
+
+    "&$badgeIcon": {
+      top: "1px",
+      left: "calc(100% - 7px)",
+    },
 
     ":empty": {
       height: 8,
@@ -39,6 +46,6 @@ export const { staticClasses, useClasses } = createClasses("HvBadge", {
   badgeHidden: {
     display: "none",
   },
-  badgeIcon: { top: "1px", left: "calc(100% - 7px)" },
+  badgeIcon: {},
   badgeOneDigit: { padding: 0, width: "16px" },
 });

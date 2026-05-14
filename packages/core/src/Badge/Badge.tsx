@@ -55,6 +55,8 @@ export const HvBadge = forwardRef<
 
   const { classes, cx } = useClasses(classesProp);
 
+  const hasContent = !!(children || icon);
+
   const label = useMemo(() => {
     if (typeof labelProp !== "number") return labelProp;
 
@@ -74,6 +76,7 @@ export const HvBadge = forwardRef<
         style={mergeStyles(style, {
           "--bg-color": color && getColor(color),
         })}
+        data-badge-inline={!hasContent ? "" : undefined}
         className={cx(classes.badge, {
           [classes.badgeHidden]: label == null,
           [classes.badgeIcon]: icon,
