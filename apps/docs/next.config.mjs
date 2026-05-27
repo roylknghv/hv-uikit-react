@@ -72,6 +72,12 @@ export default withNextra({
     if (!config.resolve.fallback) config.resolve.fallback = {};
     config.resolve.fallback.fs = false;
 
+    // Activate source condition for workspace packages
+    config.resolve.conditionNames = [
+      "@hitachivantara/source",
+      ...(config.resolve.conditionNames ?? []),
+    ];
+
     return config;
   },
 });
