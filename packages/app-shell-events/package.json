@@ -31,9 +31,6 @@
   "files": [
     "dist"
   ],
-  "publishConfig": {
-    "access": "public"
-  },
   "module": "dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
@@ -43,5 +40,8 @@
       "default": "./dist/index.js"
     },
     "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

@@ -27,9 +27,6 @@
   "files": [
     "dist"
   ],
-  "publishConfig": {
-    "access": "public"
-  },
   "module": "dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
@@ -40,5 +37,8 @@
     },
     "./package.json": "./package.json",
     "./bundles/*": "./dist/bundles/*"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

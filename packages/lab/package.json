@@ -59,9 +59,6 @@
   "files": [
     "dist"
   ],
-  "publishConfig": {
-    "access": "public"
-  },
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "exports": {
@@ -70,5 +67,8 @@
       "types": "./dist/index.d.ts",
       "default": "./dist/index.js"
     }
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
