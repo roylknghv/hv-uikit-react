@@ -4,6 +4,7 @@ import {
   type ExtractNames,
 } from "@hitachivantara/uikit-react-utils";
 
+import { useControlled } from "../hooks/useControlled";
 import type { HvBaseProps } from "../types/generic";
 import {
   fillDataWithParentId,
@@ -33,6 +34,10 @@ export interface HvVerticalNavigationProps extends HvBaseProps<HTMLDivElement> {
   classes?: HvVerticalNavigationClasses;
   /** Current State of the Vertical Navigation Collapse */
   open?: boolean;
+  /** When uncontrolled, defines the initial open state. @default true */
+  defaultOpen?: boolean;
+  /** Callback fired when the open state changes internally (e.g. via the search icon). */
+  onOpenChange?: (open: boolean) => void;
   /**
    * Collapsed Mode for the Vertical Navigation, the default value is "simple".
    *
@@ -48,6 +53,12 @@ export interface HvVerticalNavigationProps extends HvBaseProps<HTMLDivElement> {
    * When `false` no icons will be shown, even if an icon is provided.
    */
   useIcons?: boolean;
+  /** The ID of the currently selected navigation item (shared across all children). */
+  selected?: string;
+  /** When uncontrolled, the initially selected item ID. */
+  defaultSelected?: string;
+  /** Callback fired when any child selects a navigation item. */
+  onSelectedChange?: (id: string) => void;
 }
 
 /**
@@ -62,12 +73,40 @@ export const HvVerticalNavigation = forwardRef<
     className,
     classes: classesProp,
     children,
-    open = true,
+    open: openProp,
+    defaultOpen = true,
     slider = false,
     useIcons = false,
+    onOpenChange,
+    selected: selectedProp,
+    defaultSelected,
+    onSelectedChange,
     ...others
   } = useDefaultProps("HvVerticalNavigation", props);
   const { classes, cx } = useClasses(classesProp);
+
+  const [open, setOpenState] = useControlled(openProp, defaultOpen);
+
+  const setOpen = useCallback(
+    (nextOpen: boolean) => {
+      setOpenState(nextOpen);
+      onOpenChange?.(nextOpen);
+    },
+    [onOpenChange, setOpenState],
+  );
+
+  const [selected, setSelectedState] = useControlled(
+    selectedProp,
+    defaultSelected,
+  );
+
+  const setSelected = useCallback(
+    (id: string) => {
+      setSelectedState(id);
+      onSelectedChange?.(id);
+    },
+    [onSelectedChange, setSelectedState],
+  );
 
   const [parentData, setParentData] = useState<NavigationData[]>([]);
 
@@ -113,6 +152,11 @@ export const HvVerticalNavigation = forwardRef<
       slider,
       headerTitle,
 
+      setOpen,
+
+      selected,
+      setSelected,
+
       parentItem,
       setParentItem,
       withParentData,
@@ -130,6 +174,8 @@ export const HvVerticalNavigation = forwardRef<
       useIcons,
       slider,
       headerTitle,
+      selected,
+      setSelected,
       parentItem,
       setParentItem,
       withParentData,
@@ -138,6 +184,7 @@ export const HvVerticalNavigation = forwardRef<
       hasAnyChildWithData,
       parentData,
       parentSelected,
+      setOpen,
     ],
   );
 

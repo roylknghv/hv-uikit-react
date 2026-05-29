@@ -1,6 +1,10 @@
 import ClickAwayListener from "@mui/material/ClickAwayListener";
 import Popper from "@mui/material/Popper";
-import { useTheme, type ExtractNames } from "@hitachivantara/uikit-react-utils";
+import {
+  useDefaultProps,
+  useTheme,
+  type ExtractNames,
+} from "@hitachivantara/uikit-react-utils";
 
 import type { HvBaseProps } from "../../types/generic";
 import { getContainerElement } from "../../utils/document";
@@ -17,14 +21,18 @@ export interface NavigationPopupContainerProps extends HvBaseProps {
   classes?: HvVerticalNavigationPopupClasses;
 }
 
-export const NavigationPopupContainer = ({
-  anchorEl,
-  onClose,
-  children,
-  classes: classesProp,
-  className,
-  ...others
-}: NavigationPopupContainerProps) => {
+export const NavigationPopupContainer = (
+  props: NavigationPopupContainerProps,
+) => {
+  const {
+    anchorEl,
+    onClose,
+    children,
+    classes: classesProp,
+    className,
+    ...others
+  } = useDefaultProps("HvVerticalNavigationPopup", props);
+
   const { classes, cx } = useClasses(classesProp);
 
   const { rootId } = useTheme();

@@ -69,6 +69,7 @@ import type { HvTooltipProps } from "../Tooltip";
 import type { HvCalloutProps } from "../utils/Callout";
 import type {
   HvVerticalNavigationActionProps,
+  HvVerticalNavigationPopupProps,
   HvVerticalNavigationProps,
   HvVerticalNavigationSliderProps,
   HvVerticalNavigationTreeViewItemProps,
@@ -760,10 +761,14 @@ export const pentaho = mergeTheme(pentahoBase, {
         root: {
           width: 280,
           color: theme.colors.textLight,
-          backgroundColor: slate[900],
+          backgroundColor: `var(--hv-popup-nav-bg, ${slate[900]})`,
           boxShadow: `inset -1px 0 0 0 ${slate[500]}`,
-          "& > :not(nav:first-of-type)": {
-            borderTop: `1px solid ${slate[500]}`,
+          "& > * + *": {
+            padding: theme.space.sm,
+            borderTop: `1px solid ${theme.alpha("border", 0.2)}`,
+          },
+          "& > * + div": {
+            borderTop: `1px solid ${theme.colors.borderStrong}`,
           },
           "& > :only-child": {
             padding: theme.space.sm,
@@ -824,6 +829,9 @@ export const pentaho = mergeTheme(pentahoBase, {
         content: {
           borderLeft: "unset",
           borderRadius: theme.radii.round,
+          ".HvVerticalNavigationTreeViewItem-expandable>&": {
+            fontWeight: theme.fontWeights.normal,
+          },
           ".HvVerticalNavigationTreeViewItem-selected>&": {
             background: blue[800],
             borderLeft: "unset",
@@ -846,13 +854,31 @@ export const pentaho = mergeTheme(pentahoBase, {
             background: neutral[800],
           },
         },
+        expandable: {
+          fontWeight: theme.fontWeights.normal,
+        },
         icon: {
           "& .HvAvatar-root": {
             borderRadius: theme.radii.round,
           },
         },
+        group: {
+          "--hv-content-padding": "0px",
+          borderLeft: `1px solid ${theme.alpha("border", 0.2)}`,
+          marginLeft: "calc(var(--hv-nav-item-padding, 0px) + 16px)",
+          paddingLeft: theme.space.sm,
+        },
       },
     } satisfies CSSClasses<HvVerticalNavigationTreeViewItemProps>,
+    HvVerticalNavigationPopup: {
+      classes: {
+        container: {
+          "--hv-popup-nav-bg": slate[800],
+          borderRadius: theme.radii.round,
+          overflow: "hidden",
+        },
+      },
+    } satisfies CSSClasses<HvVerticalNavigationPopupProps>,
     HvCard: {
       classes: {
         root: {
