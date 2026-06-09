@@ -1,6 +1,5 @@
 import type { Property } from "csstype";
 
-import { indigo } from "../palette";
 import { ds5Colors as dsColors, getColors, oldVizColors } from "./colorsCompat";
 
 type SemanticTypes =
@@ -45,6 +44,14 @@ export interface HvColorTokens
   textLight: string;
   /** dark-only text */
   textDark: string;
+  /** link text color */
+  textLink: string;
+  /** link text color on hover */
+  textLinkHover: string;
+  /** highlighted text background color */
+  textHighlight: string;
+  /** annotation text color */
+  textAnnotation: string;
   // #endregion
 
   // #region borders
@@ -52,6 +59,10 @@ export interface HvColorTokens
   borderSubtle: string;
   borderStrong: string;
   borderDisabled: string;
+  /** focus border/outline color */
+  borderFocus: string;
+  /** focus halo color */
+  focus: string;
   // #endregion
 
   // #region backgrounds
@@ -69,6 +80,10 @@ export interface HvColorTokens
   bgDisabled: string;
   /** overlay background (for Dialog, dropdowns, etc.) */
   bgOverlay: string;
+  /** primary interactive background */
+  bgInteractive: string;
+  /** secondary interactive background */
+  bgSecondaryInteractive: string;
   /** color to use for opacity */
   dimmer: string;
   // #endregion
@@ -78,6 +93,10 @@ export interface HvColorTokens
   shad1: string;
   /** box shadow */
   shadow: string;
+  /** product brand color */
+  brand: string;
+  /** product brand text color */
+  brandText: string;
   // #endregion
 }
 
@@ -85,22 +104,37 @@ const base = {
   /** @deprecated use `textLight` instead */
   base_light: "#FBFCFC",
   /** @deprecated use `textDark` instead */
-  base_dark: "#414141",
+  base_dark: "#222222",
 };
 
 const categorical = {
-  cat1: "#95AFE8",
-  cat2: "#E89E5D",
-  cat3: "#73BAA5",
-  cat4: "#6F749F",
-  cat5: "#D17A7C",
-  cat6: "#FFDA8A",
-  cat7: "#7DC1DB",
-  cat8: "#B67EA3",
-  cat9: "#F2BC66",
-  cat10: "#2D86B3",
-  cat11: "#FC9AAA",
-  cat12: "#8EBA8C",
+  cat1: "#5B78BE",
+  cat2: "#CE6F1D",
+  cat3: "#5F903C",
+  cat4: "#984020",
+  cat5: "#404B8C",
+  cat6: "#A98F0F",
+  cat7: "#257F9D",
+  cat8: "#7B4B6B",
+  cat9: "#BE8546",
+  cat10: "#5F3DA4",
+  cat11: "#CD5A6E",
+  cat12: "#328871",
+};
+
+const categoricalDark = {
+  cat1: "#BFCDED",
+  cat2: "#E8AF7D",
+  cat3: "#A3C78A",
+  cat4: "#D98768",
+  cat5: "#A6A9C3",
+  cat6: "#F0E29E",
+  cat7: "#85D0EA",
+  cat8: "#D1AFC6",
+  cat9: "#F5D5A1",
+  cat10: "#A38DCE",
+  cat11: "#E7BBC3",
+  cat12: "#A9D3C7",
 };
 
 const common = {
@@ -121,57 +155,67 @@ const light = {
   positive: dsColors.positive[0],
   positiveDeep: dsColors.positive_120[0],
   positiveStrong: dsColors.positive_80[0],
-  positiveDimmed: dsColors.positive_20,
-  positiveSubtle: dsColors.positive_20,
-  positiveBorder: dsColors.positive_20,
+  positiveDimmed: dsColors.positive_20[0],
+  positiveSubtle: dsColors.positive_20[0],
+  positiveBorder: dsColors.positive_20[0],
   warning: dsColors.warning[0],
   warningDeep: dsColors.warning_140[0],
   warningStrong: dsColors.warning_120[0],
-  warningDimmed: dsColors.warning_20,
-  warningSubtle: dsColors.warning_20,
-  warningBorder: dsColors.warning_20,
+  warningDimmed: dsColors.warning_20[0],
+  warningSubtle: dsColors.warning_20[0],
+  warningBorder: dsColors.warning_20[0],
   negative: dsColors.negative[0],
   negativeDeep: dsColors.negative_120[0],
   negativeStrong: dsColors.negative_80[0],
-  negativeDimmed: dsColors.negative_20,
-  negativeSubtle: dsColors.negative_20,
-  negativeBorder: dsColors.negative_20,
-  info: dsColors.neutral[0],
-  infoDeep: dsColors.neutral[0],
-  infoStrong: dsColors.neutral[0],
-  infoDimmed: dsColors.neutral_20,
-  infoSubtle: dsColors.neutral_20,
-  infoBorder: dsColors.neutral_20,
-  accent: indigo[600] as string,
-  accentDeep: indigo[800] as string,
-  accentStrong: indigo[700] as string,
-  accentSubtle: indigo[100] as string,
-  accentDimmed: indigo[50] as string,
-  accentBorder: indigo[200] as string,
+  negativeDimmed: dsColors.negative_20[0],
+  negativeSubtle: dsColors.negative_20[0],
+  negativeBorder: dsColors.negative_20[0],
+  info: dsColors.informative[0],
+  infoDeep: dsColors.cat1_140,
+  infoStrong: dsColors.cat1_140,
+  infoDimmed: dsColors.informative_20[0],
+  infoSubtle: dsColors.informative_20[0],
+  infoBorder: dsColors.informative_20[0],
+  accent: dsColors.link[0],
+  accentDeep: dsColors.link[0],
+  accentStrong: dsColors.link_hover[0],
+  accentSubtle: dsColors.interactive_primary[0],
+  accentDimmed: dsColors.interactive_primary[0],
+  accentBorder: dsColors.cat1_60,
 
-  text: dsColors.secondary[0],
+  text: dsColors.primary[0],
   textSubtle: dsColors.secondary_80[0],
   textDisabled: dsColors.secondary_60[0],
   textDimmed: dsColors.atmo1[0],
   textLight: base.base_light,
   textDark: base.base_dark,
+  textLink: dsColors.link[0],
+  textLinkHover: dsColors.link_hover[0],
+  textHighlight: dsColors.text_highlight[0],
+  textAnnotation: "#FF00FF",
 
   border: dsColors.atmo4[0],
   borderSubtle: dsColors.atmo3[0],
-  borderStrong: dsColors.secondary_80[0],
+  borderStrong: dsColors.hover_border[0],
   borderDisabled: dsColors.secondary_60[0],
+  borderFocus: dsColors.cat1_140,
+  focus: dsColors.focus[0],
 
-  bgPage: dsColors.atmo2[0],
-  bgContainer: dsColors.atmo1[0],
-  bgPageSecondary: dsColors.atmo3[0],
+  bgPage: dsColors.atmo0[0],
+  bgContainer: dsColors.atmo2[0],
+  bgPageSecondary: dsColors.atmo1[0],
   bgContainerSecondary: dsColors.atmo1[0],
-  bgHover: dsColors.primary_20[0],
+  bgHover: dsColors.hover_container[0],
   bgDisabled: dsColors.atmo3[0],
-  bgOverlay: `color-mix(in srgb, ${dsColors.atmo4[0]} 80%, transparent)`,
+  bgOverlay: dsColors.overlay[0],
+  bgInteractive: dsColors.interactive_primary[0],
+  bgSecondaryInteractive: dsColors.cat3_20,
   dimmer: "#FFFFFF",
 
   shad1: "rgba(65, 65, 65, 0.12)",
-  shadow: "0 2px 12px rgba(65,65,65,0.12)",
+  shadow: "0 2px 12px rgba(34, 34, 34, 0.12)",
+  brand: dsColors.brand[0],
+  brandText: dsColors.brand_text[0],
 
   ...categorical,
 } satisfies HvColorTokens & Record<string, string>;
@@ -189,33 +233,33 @@ const dark = {
   positive: dsColors.positive[1],
   positiveDeep: dsColors.positive_120[1],
   positiveStrong: dsColors.positive_80[1],
-  positiveDimmed: dsColors.positive_20,
-  positiveSubtle: dsColors.positive_20,
-  positiveBorder: dsColors.positive_20,
+  positiveDimmed: dsColors.positive_20[1],
+  positiveSubtle: dsColors.positive_20[1],
+  positiveBorder: dsColors.positive_20[1],
   warning: dsColors.warning[1],
   warningDeep: dsColors.warning_140[1],
   warningStrong: dsColors.warning_120[1],
-  warningDimmed: dsColors.warning_20,
-  warningSubtle: dsColors.warning_20,
-  warningBorder: dsColors.warning_20,
+  warningDimmed: dsColors.warning_20[1],
+  warningSubtle: dsColors.warning_20[1],
+  warningBorder: dsColors.warning_20[1],
   negative: dsColors.negative[1],
   negativeDeep: dsColors.negative_120[1],
   negativeStrong: dsColors.negative_80[1],
-  negativeDimmed: dsColors.negative_20,
-  negativeSubtle: dsColors.negative_20,
-  negativeBorder: dsColors.negative_20,
+  negativeDimmed: dsColors.negative_20[1],
+  negativeSubtle: dsColors.negative_20[1],
+  negativeBorder: dsColors.negative_20[1],
   info: dsColors.neutral[1],
   infoDeep: dsColors.neutral[1],
   infoStrong: dsColors.neutral[1],
-  infoDimmed: dsColors.neutral_20,
-  infoSubtle: dsColors.neutral_20,
-  infoBorder: dsColors.neutral_20,
-  accent: indigo[500] as string,
-  accentDeep: indigo[700] as string,
-  accentStrong: indigo[600] as string,
-  accentSubtle: indigo[900] as string,
-  accentDimmed: indigo[950] as string,
-  accentBorder: indigo[800] as string,
+  infoDimmed: dsColors.informative_20[1],
+  infoSubtle: dsColors.informative_20[1],
+  infoBorder: dsColors.informative_20[1],
+  accent: dsColors.link[1],
+  accentDeep: dsColors.link[1],
+  accentStrong: dsColors.link_hover[1],
+  accentSubtle: dsColors.interactive_primary[1],
+  accentDimmed: dsColors.interactive_primary[1],
+  accentBorder: dsColors.cat1_60,
 
   text: dsColors.secondary[1],
   textSubtle: dsColors.secondary_80[1],
@@ -223,25 +267,35 @@ const dark = {
   textDimmed: dsColors.atmo1[1],
   textLight: base.base_light,
   textDark: base.base_dark,
+  textLink: dsColors.link[1],
+  textLinkHover: dsColors.link_hover[1],
+  textHighlight: dsColors.text_highlight[1],
+  textAnnotation: "#FF00FF",
 
   border: dsColors.atmo4[1],
   borderSubtle: dsColors.atmo3[1],
-  borderStrong: dsColors.secondary_80[0],
-  borderDisabled: dsColors.secondary_60[0],
+  borderStrong: dsColors.hover_border[1],
+  borderDisabled: dsColors.secondary_60[1],
+  borderFocus: dsColors.cat1_140,
+  focus: dsColors.focus[1],
 
-  bgPage: dsColors.atmo2[1],
-  bgContainer: dsColors.atmo1[1],
-  bgPageSecondary: dsColors.atmo3[1],
+  bgPage: dsColors.atmo0[1],
+  bgContainer: dsColors.atmo2[1],
+  bgPageSecondary: dsColors.atmo1[1],
   bgContainerSecondary: dsColors.atmo1[1],
-  bgHover: dsColors.primary_20[1],
+  bgHover: dsColors.hover_container[1],
   bgDisabled: dsColors.atmo3[1],
-  bgOverlay: `color-mix(in srgb, ${dsColors.atmo4[1]} 80%, transparent)`,
+  bgOverlay: dsColors.overlay[1],
+  bgInteractive: dsColors.interactive_primary[1],
+  bgSecondaryInteractive: dsColors.cat3_20,
   dimmer: "#000000",
 
   shad1: "rgba(0,0,0,.16)",
   shadow: "0 3px 5px rgba(0,0,0,.16)",
+  brand: dsColors.brand[1],
+  brandText: dsColors.brand_text[1],
 
-  ...categorical,
+  ...categoricalDark,
 } satisfies HvColorTokens & Record<string, string>;
 // #endregion
 

@@ -12,9 +12,9 @@ export const breakpoints = {
   step: 5,
   values: {
     xs: 0,
-    sm: 600,
-    md: 960,
-    lg: 1270,
-    xl: 1920,
+    sm: 480,
+    md: 810,
+    lg: 1024,
+    xl: 1440,
   },
 } satisfies HvThemeBreakpoints;

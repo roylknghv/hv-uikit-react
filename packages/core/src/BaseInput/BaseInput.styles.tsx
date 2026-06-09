@@ -35,7 +35,7 @@ export const { staticClasses, useClasses } = createClasses("HvBaseInput", {
     borderRadius: theme.radii.round,
     height: "32px",
     borderWidth: 1,
-    borderColor: theme.colors.text,
+    borderColor: theme.colors.border,
     boxSizing: "border-box",
     backgroundColor: theme.colors.bgContainer,
     fontFamily: theme.fontFamily.body,
@@ -43,7 +43,7 @@ export const { staticClasses, useClasses } = createClasses("HvBaseInput", {
     ...theme.typography.body,
 
     ":hover:not($disabled,$readOnly)": {
-      borderColor: theme.colors.primary,
+      borderColor: theme.colors.borderStrong,
     },
     ":focus-within:not($disabled)": {
       ...outlineStyles,
