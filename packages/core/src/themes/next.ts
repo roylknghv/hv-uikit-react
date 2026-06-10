@@ -96,6 +96,15 @@ export const next = mergeTheme(nextBase, {
             "&[data-color=warning]": { color: theme.colors.warningDeep },
           },
         },
+        subtle: {
+          "&[data-color=secondary]": {
+            color: theme.colors.text,
+            borderColor: theme.colors.textSubtle,
+            ":hover, &:focus-visible": {
+              borderColor: theme.colors.borderStrong,
+            },
+          },
+        },
         contained: {
           ":where([data-color=primary]:not(.HvButton-disabled))": {
             ":hover, &:focus-visible": {
