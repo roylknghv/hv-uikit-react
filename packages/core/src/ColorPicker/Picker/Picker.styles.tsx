@@ -17,7 +17,7 @@ export const { useClasses } = createClasses("HvColorPickerPicker", {
     "& .w-color-saturation-fill": {
       width: "8px !important",
       height: "8px !important",
-      boxShadow: `0 0 0 2px #fff, inset 0 0 1px 1px rgba(0,0,0,.3),0 0 1px 2px rgba(0,0,0,.4) !important`,
+      boxShadow: `0 0 0 2px ${theme.colors.bgPage}, inset 0 0 1px 1px ${theme.colors.focus}, 0 0 1px 2px ${theme.colors.bgOverlay} !important`,
     },
   },
   hue: {
@@ -30,9 +30,9 @@ export const { useClasses } = createClasses("HvColorPickerPicker", {
       width: "12px !important",
       height: "12px !important",
       backgroundColor: "transparent !important",
-      boxShadow: "0 0 2px rgb(0 0 0 / 60%)",
+      boxShadow: `0 0 2px ${theme.colors.bgOverlay}`,
       marginLeft: "0px",
-      border: "2px solid #fff",
+      border: `2px solid ${theme.colors.bgPage}`,
       borderRadius: theme.radii.full,
       transform: "translate(-6px, -2px) !important",
     },

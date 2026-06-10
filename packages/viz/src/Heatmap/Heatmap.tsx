@@ -106,6 +106,11 @@ export const HvHeatmap = forwardRef<ReactECharts, HvHeatmapProps>(
     const convertedColors = colorScale?.map(
       (color) => colors?.[color] || color,
     );
+    const defaultColorScale = [
+      colors?.cat1 || "#5B78BE",
+      colors?.cat1_60 || "#BFCDED",
+      colors?.cat1_20 || "#E0E6F5",
+    ];
 
     const chartVisualMap = useVisualMap({
       min,
@@ -116,7 +121,7 @@ export const HvHeatmap = forwardRef<ReactECharts, HvHeatmapProps>(
       position: {
         y: "bottom",
       },
-      colorScale: convertedColors || ["#2D4B87", "#95AFE8", "#E7EDF9"],
+      colorScale: convertedColors || defaultColorScale,
     });
 
     const option = useOption({
@@ -135,7 +140,7 @@ export const HvHeatmap = forwardRef<ReactECharts, HvHeatmapProps>(
             emphasis: {
               itemStyle: {
                 shadowBlur: 10,
-                shadowColor: "rgba(0, 0, 0, 0.5)",
+                shadowColor: colors?.bgOverlay || "rgba(34, 34, 34, 0.6)",
               },
             },
           },
