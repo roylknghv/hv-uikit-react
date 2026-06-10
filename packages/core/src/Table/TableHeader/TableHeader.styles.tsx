@@ -136,10 +136,10 @@ export const { staticClasses, useClasses } = createClasses("HvTableHeader", {
   resizable: {
     borderRightWidth: 1,
     ":has($resizer:hover)": {
-      borderRight: `2px solid ${theme.colors.primaryStrong}`,
+      borderRight: `2px solid ${theme.colors.borderStrong}`,
     },
   },
-  resizing: { borderRight: `2px solid ${theme.colors.primaryStrong}` },
+  resizing: { borderRight: `2px solid ${theme.colors.borderStrong}` },
   resizer: {
     display: "inline-block",
     width: 16,

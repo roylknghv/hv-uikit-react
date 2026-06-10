@@ -14,11 +14,11 @@ export const { staticClasses, useClasses } = createClasses("HvDropZone", {
     borderRadius: theme.radii.round,
 
     "&:hover": {
-      borderColor: theme.colors.text,
+      borderColor: theme.colors.borderStrong,
     },
 
     "&:focus-within": {
-      borderColor: theme.colors.text,
+      borderColor: theme.colors.borderFocus,
       ...outlineStyles,
     },
   },
@@ -29,7 +29,7 @@ export const { staticClasses, useClasses } = createClasses("HvDropZone", {
   },
   dragAction: {
     backgroundColor: theme.colors.bgContainer,
-    borderColor: theme.colors.primary,
+    borderColor: theme.colors.borderStrong,
   },
   dropZoneContainerDisabled: {
     color: theme.colors.textDisabled,

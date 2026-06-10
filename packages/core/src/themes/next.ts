@@ -182,7 +182,7 @@ export const next = mergeTheme(nextBase, {
           borderRadius: theme.radii.round,
           "& .HvMultiButton-button.HvMultiButton-selected": {
             borderRadius: theme.radii.round,
-            borderColor: theme.colors.primary,
+            borderColor: theme.colors.borderStrong,
             borderWidth: 2,
           },
         },
@@ -190,7 +190,7 @@ export const next = mergeTheme(nextBase, {
           borderRadius: theme.radii.round,
           "& .HvMultiButton-button.HvMultiButton-selected": {
             borderRadius: theme.radii.round,
-            borderColor: theme.colors.primary,
+            borderColor: theme.colors.borderStrong,
             borderWidth: 2,
           },
         },
@@ -250,7 +250,10 @@ export const next = mergeTheme(nextBase, {
           "--tagColor": theme.alpha("cat1", 0.2),
         },
         xs: {
-          height: 19,
+          height: 28,
+        },
+        sm: {
+          height: 28,
         },
       },
     } satisfies CSSClasses<HvTagProps>,
@@ -292,7 +295,7 @@ export const next = mergeTheme(nextBase, {
     HvRadioIcon: {
       classes: {
         checked: {
-          "--bg-color": theme.colors.primary,
+          "--bg-color": theme.colors.borderStrong,
         },
       },
     } satisfies CSSClasses<HvRadioIconProps>,

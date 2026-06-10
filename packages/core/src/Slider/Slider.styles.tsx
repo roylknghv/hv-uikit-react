@@ -175,7 +175,7 @@ export const { staticClasses, useClasses } = createClasses("HvSlider", {
       // show, can't be overridden for the focus scenario unless we use the `!important` flag.
       "&:focus-visible": {
         ...outlineStyles,
-        boxShadow: "0 0 0 3px #52A8EC, 0 0 0 7px rgba(29,155,209,.3)!important",
+        boxShadow: `0 0 0 3px ${theme.colors.borderFocus}, 0 0 0 7px ${theme.colors.focus}!important`,
         "&::after": {
           ...border,
         },

@@ -19,10 +19,10 @@ export const { useClasses, staticClasses } = createClasses("HvBaseDropdown", {
     position: "relative",
     backgroundColor: theme.colors.bgContainer,
     boxSizing: "border-box",
-    border: `1px solid ${theme.colors.text}`,
+    border: `1px solid ${theme.colors.border}`,
     borderRadius: theme.radii.round,
     ":hover,:focus-visible": {
-      borderColor: theme.colors.primary,
+      borderColor: theme.colors.borderStrong,
     },
     ":focus": {
       outline: "none",
@@ -33,14 +33,14 @@ export const { useClasses, staticClasses } = createClasses("HvBaseDropdown", {
   },
   headerOpen: {
     "&,:hover": {
-      borderColor: theme.colors.text,
+      borderColor: theme.colors.borderStrong,
     },
   },
   headerDisabled: {
     cursor: "not-allowed",
     pointerEvents: "none",
     color: theme.colors.textDisabled,
-    backgroundColor: theme.colors.bgPage,
+    backgroundColor: theme.colors.bgDisabled,
     "&,:hover": {
       borderColor: "currentcolor",
     },

@@ -52,11 +52,11 @@ export const { staticClasses, useClasses } = createClasses("HvTagsInput", {
 
     backgroundColor: theme.colors.bgContainer,
     borderWidth: 1,
-    borderColor: theme.colors.textSubtle,
+    borderColor: theme.colors.border,
     borderRadius: theme.radii.round,
 
     "&:hover": {
-      borderColor: theme.colors.primary,
+      borderColor: theme.colors.borderStrong,
     },
 
     "&:focus-within, &:focus-visible": {
