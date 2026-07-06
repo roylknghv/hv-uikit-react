@@ -11,8 +11,11 @@ export const { useClasses, staticClasses } = createClasses("HvTypography", {
   },
   isLink: {
     cursor: "pointer",
-    color: theme.colors.primary,
+    color: theme.colors.textLink,
     textDecoration: "underline",
+    "&:hover": {
+      color: theme.colors.textLinkHover,
+    },
   },
   noWrap: {
     overflow: "hidden",

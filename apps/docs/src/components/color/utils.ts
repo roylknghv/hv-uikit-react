@@ -16,22 +16,32 @@ export const compatMap: Partial<Record<keyof HvThemeColors, string>> = {
   negativeStrong: "negative_80",
   negativeDeep: "negative_120",
   negativeDimmed: "negative_20",
-  info: "neutral",
-  infoDimmed: "neutral_20",
+  info: "informative",
+  infoDimmed: "informative_20",
 
-  text: "secondary",
+  text: "primary",
   textSubtle: "secondary_80",
   textDisabled: "secondary_60",
   textDimmed: "atmo1",
   textLight: "base_light",
   textDark: "base_dark",
+  textLink: "link",
+  textLinkHover: "link_hover",
+  textHighlight: "text_highlight",
+  brandText: "brand_text",
 
-  bgHover: "primary_20",
+  bgHover: "hover_container",
   bgDisabled: "atmo3",
-  bgPage: "atmo2",
-  bgContainer: "atmo1",
-  bgPageSecondary: "atmo3",
+  bgPage: "atmo0",
+  bgContainer: "atmo2",
+  bgContainerSecondary: "atmo1",
+  bgPageSecondary: "atmo1",
+  bgInteractive: "interactive_primary",
+  bgSecondaryInteractive: "cat3_20",
+  bgOverlay: "overlay",
   border: "atmo4",
+  borderStrong: "hover_border",
+  borderFocus: "cat1_140",
 };
 
 // Groups color tokens by their prefix category.
@@ -105,12 +115,18 @@ export const colorTokensSpec: HvColorTokens = {
   textDimmed: "string",
   textLight: "string",
   textDark: "string",
+  textLink: "string",
+  textLinkHover: "string",
+  textHighlight: "string",
+  textAnnotation: "string",
 
   // Borders
   border: "string",
   borderSubtle: "string",
   borderStrong: "string",
   borderDisabled: "string",
+  borderFocus: "string",
+  focus: "string",
 
   // Backgrounds
   bgPage: "string",
@@ -120,11 +136,15 @@ export const colorTokensSpec: HvColorTokens = {
   bgHover: "string",
   bgDisabled: "string",
   bgOverlay: "string",
+  bgInteractive: "string",
+  bgSecondaryInteractive: "string",
   dimmer: "string",
 
   // Shadows
   shad1: "string",
   shadow: "string",
+  brand: "string",
+  brandText: "string",
 
   // Viz colors
   cat1: "string",

@@ -38,9 +38,9 @@ describe("ColorPicker", () => {
     );
 
     expect(screen.getByText(/recommended colors/i)).toBeInTheDocument();
-    expect(screen.getByTitle("#95AFE8")).toBeInTheDocument();
-    expect(screen.getByTitle("#E89E5D")).toBeInTheDocument();
-    expect(screen.getByTitle("#83B8A6")).toBeInTheDocument();
+    expect(screen.getByTitle("#5B78BE")).toBeInTheDocument();
+    expect(screen.getByTitle("#CE6F1D")).toBeInTheDocument();
+    expect(screen.getByTitle("#5F903C")).toBeInTheDocument();
   });
 
   it("should render full color icon picker", () => {

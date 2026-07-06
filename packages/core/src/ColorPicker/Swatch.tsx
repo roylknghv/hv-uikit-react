@@ -14,7 +14,7 @@ const { useClasses } = createClasses("HvColorPickerSwatch", {
     height: "32px",
     borderRadius: theme.radii.base,
     ":focus": {
-      boxShadow: `rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset, var(--color) 0px 0px 4px`,
+      boxShadow: `${theme.colors.bgOverlay} 0px 0px 0px 1px inset, var(--color) 0px 0px 4px`,
     },
     "&,&:hover,&:focus-visible": {
       backgroundColor: "var(--color)",

@@ -27,7 +27,7 @@ export const { staticClasses, useClasses } = createClasses("HvBaseSwitch", {
         transform: "translateX(16px)",
         "& + $track": {
           opacity: 1,
-          backgroundColor: theme.colors.primary,
+          backgroundColor: theme.colors.borderStrong,
           borderColor: "transparent",
         },
         "&:not($disabled) $thumb": {

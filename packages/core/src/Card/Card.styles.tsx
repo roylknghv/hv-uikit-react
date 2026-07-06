@@ -21,12 +21,12 @@ export const { staticClasses, useClasses } = createClasses("HvCard", {
   },
   selected: {
     "&,&:hover,&:focus": {
-      outlineColor: theme.colors.text,
+      outlineColor: theme.colors.borderStrong,
     },
   },
   selectable: {
     "&:hover": {
-      outlineColor: theme.colors.primary,
+      outlineColor: theme.colors.borderStrong,
     },
   },
   semanticContainer: {

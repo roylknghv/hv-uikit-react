@@ -30,7 +30,7 @@ export const { staticClasses, useClasses } = createClasses("HvInlineEditor", {
     borderColor: "transparent",
 
     "&:hover, &:focus": {
-      borderColor: theme.colors.primary,
+      borderColor: theme.colors.borderStrong,
       backgroundColor: theme.colors.bgContainer,
 
       "& $icon": {
@@ -39,7 +39,7 @@ export const { staticClasses, useClasses } = createClasses("HvInlineEditor", {
     },
 
     "&:active": {
-      borderColor: theme.colors.text,
+      borderColor: theme.colors.borderStrong,
       backgroundColor: "transparent",
 
       "& $icon": {

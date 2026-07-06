@@ -81,10 +81,20 @@ export const { staticClasses, useClasses } = createClasses("HvButton", {
         backgroundColor: theme.mix("var(--color)", 0.7, "black"),
       },
     },
+    "&$disabled": {
+      color: theme.colors.textDisabled,
+      backgroundColor: theme.colors.bgDisabled,
+      borderColor: "transparent",
+    },
   },
   /** applied to the root element when using the `subtle` variant */
   subtle: {
     borderColor: "currentcolor",
+    "&$disabled": {
+      color: theme.colors.textDisabled,
+      borderColor: theme.colors.bgDisabled,
+      backgroundColor: "transparent",
+    },
   },
   /** applied to the root element when using the `ghost` variant */
   ghost: {},
